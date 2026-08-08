@@ -1,0 +1,105 @@
+site_name: Doctorado
+site_description: Notas, guías y bitácora de investigación
+docs_dir: docs
+site_dir: .site
+use_directory_urls: true
+
+theme:
+  name: material
+  language: es
+  icon:
+    logo: material/school
+  features:
+    - navigation.tabs
+    - navigation.sections
+    - navigation.indexes
+    - navigation.top
+    - navigation.footer
+    - search.suggest
+    - search.highlight
+    - search.share
+    - content.code.copy
+    - content.code.annotate
+    - toc.follow
+  palette:
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: indigo
+      accent: indigo
+      toggle:
+        icon: material/weather-night
+        name: Modo oscuro
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: indigo
+      accent: indigo
+      toggle:
+        icon: material/weather-sunny
+        name: Modo claro
+
+plugins:
+  - search:
+      lang: es
+  # awesome-pages: la navegación se genera sola desde las carpetas.
+  # El orden y los títulos se controlan con un fichero .pages en cada directorio,
+  # así no tienes que tocar este YAML cada vez que añades una nota.
+  - awesome-pages
+  - tags:
+      tags_file: meta/tags.md
+  - git-revision-date-localized:
+      type: timeago
+      locale: es
+      fallback_to_build_date: true
+  - glightbox
+  # Renderiza notebooks como páginas del sitio (sin ejecutarlos)
+  - mkdocs-jupyter:
+      execute: false
+      include_source: true
+      ignore: ["**/.ipynb_checkpoints/*"]
+
+markdown_extensions:
+  - abbr
+  - admonition
+  - attr_list
+  - def_list
+  - footnotes
+  - md_in_html
+  - tables
+  - toc:
+      permalink: true
+      toc_depth: 3
+  - pymdownx.details
+  - pymdownx.caret
+  - pymdownx.mark
+  - pymdownx.tilde
+  - pymdownx.tasklist:
+      custom_checkbox: true
+  - pymdownx.highlight:
+      anchor_linenums: true
+      line_spans: __span
+  - pymdownx.inlinehilite
+  # snippets: permite incrustar ficheros de FUERA de docs/, p.ej. el README
+  # de un laboratorio, con   --8<-- "labs/dl-lab/README.md"
+  - pymdownx.snippets:
+      base_path: ["."]
+      check_paths: true
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+  - pymdownx.tabbed:
+      alternate_style: true
+  # LaTeX
+  - pymdownx.arithmatex:
+      generic: true
+
+extra_javascript:
+  - assets/mathjax.js
+  - https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js
+
+extra:
+  tags:
+    Teoría: teoria
+    Práctica: practica
+    Paper: paper

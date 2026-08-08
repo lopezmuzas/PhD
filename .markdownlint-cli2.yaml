@@ -1,0 +1,9 @@
+config:
+  MD013: false   # sin límite de longitud de línea
+  MD033: false   # se permite HTML inline
+  MD041: false   # el frontmatter va antes del H1
+globs:
+  - "docs/**/*.md"
+ignores:
+  - "**/.site/**"
+  - "**/node_modules/**"

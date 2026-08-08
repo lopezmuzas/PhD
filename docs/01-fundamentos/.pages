@@ -1,0 +1,5 @@
+title: "I. Fundamentos"
+nav:
+  - "1. Qué es y de dónde viene": 01-que-es-y-de-donde-viene
+  - "2. Las matemáticas necesarias": 02-las-matematicas-necesarias
+  - "3. Cómo se entrena una red": 03-como-se-entrena-una-red

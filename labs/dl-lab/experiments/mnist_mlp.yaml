@@ -1,0 +1,21 @@
+name: mnist_mlp
+seed: 42
+device: auto
+
+model:
+  name: mlp
+  hidden: [128, 64]
+  dropout: 0.2
+  activation: relu
+
+data:
+  name: mnist
+  batch_size: 128
+  num_workers: 2
+
+train:
+  epochs: 20
+  lr: 0.001
+  weight_decay: 0.0001
+  optimizer: adamw
+  patience: 5

@@ -1,0 +1,23 @@
+{
+  "name": "dl-lab",
+  "dockerComposeFile": ["../compose.yaml"],
+  "service": "lab",
+  "runServices": ["lab"],
+  "workspaceFolder": "/workspace",
+  "remoteUser": "lab",
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "ms-python.python",
+        "ms-toolsai.jupyter",
+        "charliermarsh.ruff",
+        "congyiwu.vscode-jupytext"
+      ],
+      "settings": {
+        "python.defaultInterpreterPath": "/usr/local/bin/python",
+        "jupyter.notebookFileRoot": "/workspace"
+      }
+    }
+  },
+  "shutdownAction": "stopCompose"
+}

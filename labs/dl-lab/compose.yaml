@@ -1,0 +1,73 @@
+name: dl-lab
+
+services:
+  # ---------- Laboratorio en CPU ----------
+  lab:
+    profiles: ["cpu"]
+    build:
+      context: .
+      dockerfile: docker/Dockerfile
+      args:
+        TORCH_INDEX: cpu
+        UID: ${UID:-1000}
+        GID: ${GID:-1000}
+    image: dl-lab:cpu
+    working_dir: /workspace
+    environment:
+      JUPYTER_TOKEN: ${JUPYTER_TOKEN:-dev}
+      MLFLOW_TRACKING_URI: ${MLFLOW_TRACKING_URI:-file:///workspace/outputs/mlruns}
+    ports:
+      - "8888:8888"   # JupyterLab
+      - "6006:6006"   # TensorBoard
+    volumes:
+      - .:/workspace
+      - caches:/home/lab/.cache
+    shm_size: "2gb"
+
+  # ---------- Laboratorio con GPU NVIDIA ----------
+  lab-gpu:
+    profiles: ["gpu"]
+    build:
+      context: .
+      dockerfile: docker/Dockerfile
+      args:
+        TORCH_INDEX: cu124
+        UID: ${UID:-1000}
+        GID: ${GID:-1000}
+    image: dl-lab:gpu
+    working_dir: /workspace
+    environment:
+      JUPYTER_TOKEN: ${JUPYTER_TOKEN:-dev}
+      MLFLOW_TRACKING_URI: ${MLFLOW_TRACKING_URI:-file:///workspace/outputs/mlruns}
+      NVIDIA_VISIBLE_DEVICES: all
+    ports:
+      - "8888:8888"
+      - "6006:6006"
+    volumes:
+      - .:/workspace
+      - caches:/home/lab/.cache
+    shm_size: "8gb"     # necesario si usas DataLoader con num_workers > 0
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: all
+              capabilities: [gpu]
+
+  # ---------- Tracking de experimentos (opcional) ----------
+  mlflow:
+    profiles: ["tracking"]
+    image: ghcr.io/mlflow/mlflow:v2.16.2
+    command: >
+      mlflow server --host 0.0.0.0 --port 5000
+      --backend-store-uri sqlite:////mlflow/mlflow.db
+      --artifacts-destination /mlflow/artifacts
+    ports:
+      - "5000:5000"
+    volumes:
+      - mlflow:/mlflow
+
+volumes:
+  caches:
+  mlflow:

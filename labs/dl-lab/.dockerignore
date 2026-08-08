@@ -1,0 +1,9 @@
+.git
+data
+outputs
+notebooks/**/.ipynb_checkpoints
+**/__pycache__
+*.egg-info
+.venv
+.pytest_cache
+.ruff_cache

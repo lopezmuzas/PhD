@@ -1,0 +1,27 @@
+# Archivos del sistema y entorno
+.DS_Store
+.env
+.env.bak
+.site/
+.cache/
+caches/
+**/.ipynb_checkpoints/
+.pytest_cache/
+.ruff_cache/
+.virtual_documents/
+
+# Logs y temporales
+*.log
+*.tmp
+
+# Python / Entornos
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# Cómputo local de laboratorio (se mantienen las carpetas vacías con .gitkeep si existen)
+labs/dl-lab/outputs/runs/*
+labs/dl-lab/outputs/checkpoints/*
+!labs/dl-lab/outputs/runs/.gitkeep
+!labs/dl-lab/outputs/checkpoints/.gitkeep

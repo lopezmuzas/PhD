@@ -1,0 +1,8 @@
+title: "6. Dónde están los datos"
+nav:
+  - "6.1 Todo en un servidor (centralizado)": 6.1-centralizado.md
+  - "6.2 Repartido, mismo dueño (distribuido)": 6.2-distribuido.md
+  - "6.3 Dueños distintos (federado)": 6.3-federado.md
+  - "6.4 Sin servidor central (descentralizado)": 6.4-descentralizado.md
+  - "6.5 Privacidad y seguridad": 6.5-privacidad-y-seguridad.md
+  - "6.6 Data spaces": 6.6-data-spaces.md

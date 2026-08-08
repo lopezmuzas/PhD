@@ -1,0 +1,27 @@
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+*.egg-info/
+.pytest_cache/
+.ruff_cache/
+
+# Datos y salidas (nunca a git)
+data/raw/
+data/interim/
+data/processed/
+data/external/
+outputs/
+!outputs/.gitkeep
+mlruns/
+lightning_logs/
+wandb/
+*.ckpt
+*.pt
+*.pth
+*.onnx
+
+# Entorno
+.env
+.ipynb_checkpoints/
+.DS_Store

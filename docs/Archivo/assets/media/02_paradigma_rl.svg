@@ -1,0 +1,40 @@
+<svg width="680" height="490" viewBox="0 0 680 490" xmlns="http://www.w3.org/2000/svg" role="img">
+<title>El paradigma RL por dentro: bucle agente-entorno, familias de algoritmos y modos</title>
+<style>
+text{font-family:'Helvetica Neue',Arial,sans-serif}
+.th{font-size:14px;font-weight:600}
+.ts{font-size:12px}
+</style>
+<defs><marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M2 1L8 5L2 9" fill="none" stroke="#5F5E5A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></marker></defs>
+<rect x="0" y="0" width="680" height="490" fill="#FFFFFF"/>
+<rect x="270" y="40" width="140" height="44" rx="8" fill="#E1F5EE" stroke="#0F6E56" stroke-width="1"/>
+<text class="th" x="340" y="66" text-anchor="middle" fill="#085041">Agente · π</text>
+<rect x="270" y="160" width="140" height="44" rx="8" fill="#F1EFE8" stroke="#888780" stroke-width="0.8"/>
+<text class="th" x="340" y="186" text-anchor="middle" fill="#444441">Entorno</text>
+<path d="M410 62 L470 62 L470 182 L414 182" fill="none" stroke="#5F5E5A" stroke-width="1.2" marker-end="url(#arrow)"/>
+<text class="ts" x="482" y="124" fill="#5F5E5A">acción aₜ</text>
+<path d="M270 182 L200 182 L200 62 L266 62" fill="none" stroke="#5F5E5A" stroke-width="1.2" marker-end="url(#arrow)"/>
+<text class="ts" x="188" y="118" text-anchor="end" fill="#5F5E5A">estado sₜ₊₁</text>
+<text class="ts" x="188" y="134" text-anchor="end" fill="#5F5E5A">recompensa rₜ₊₁</text>
+<rect x="50" y="250" width="130" height="56" rx="8" fill="#EEEDFE" stroke="#534AB7" stroke-width="0.8"/>
+<text class="th" x="115" y="272" text-anchor="middle" fill="#26215C">Valor</text>
+<text class="ts" x="115" y="292" text-anchor="middle" fill="#3C3489">DQN, Rainbow</text>
+<rect x="200" y="250" width="130" height="56" rx="8" fill="#EEEDFE" stroke="#534AB7" stroke-width="0.8"/>
+<text class="th" x="265" y="272" text-anchor="middle" fill="#26215C">Política</text>
+<text class="ts" x="265" y="292" text-anchor="middle" fill="#3C3489">PPO, TRPO</text>
+<rect x="350" y="250" width="130" height="56" rx="8" fill="#EEEDFE" stroke="#534AB7" stroke-width="0.8"/>
+<text class="th" x="415" y="272" text-anchor="middle" fill="#26215C">Actor-critic</text>
+<text class="ts" x="415" y="292" text-anchor="middle" fill="#3C3489">SAC, DDPG, TD3</text>
+<rect x="500" y="250" width="130" height="56" rx="8" fill="#E1F5EE" stroke="#0F6E56" stroke-width="1.2"/>
+<text class="th" x="565" y="272" text-anchor="middle" fill="#085041">RL offline</text>
+<text class="ts" x="565" y="292" text-anchor="middle" fill="#085041">CQL, IQL, TD3+BC</text>
+<rect x="120" y="346" width="440" height="100" rx="12" fill="none" stroke="#888780" stroke-width="0.8" stroke-dasharray="6 5"/>
+<text class="ts" x="136" y="366" fill="#5F5E5A">Modo de interacción con el entorno</text>
+<rect x="140" y="378" width="180" height="52" rx="8" fill="#F1EFE8" stroke="#888780" stroke-width="0.8"/>
+<text class="th" x="230" y="398" text-anchor="middle" fill="#444441">Online</text>
+<text class="ts" x="230" y="416" text-anchor="middle" fill="#5F5E5A">interactúa en vivo</text>
+<rect x="360" y="378" width="180" height="52" rx="8" fill="#E1F5EE" stroke="#0F6E56" stroke-width="1.2"/>
+<text class="th" x="450" y="398" text-anchor="middle" fill="#085041">Offline · off-policy</text>
+<text class="ts" x="450" y="416" text-anchor="middle" fill="#085041">solo dataset fijo</text>
+<text class="ts" x="340" y="470" text-anchor="middle" fill="#5F5E5A">En verde: las elecciones del nicho. Off-policy es obligado en offline: se aprende de datos generados por otra política.</text>
+</svg>

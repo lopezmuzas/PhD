@@ -1,0 +1,9 @@
+# Compose raíz del doctorado.
+# `include` (Compose >= 2.20) permite que cada subproyecto mantenga SU propio
+# compose.yaml y siga funcionando de forma independiente. Las rutas relativas
+# de cada fichero incluido se resuelven respecto a su propia carpeta.
+name: doctorado
+
+include:
+  - path: docs-stack/compose.yaml
+  - path: labs/dl-lab/compose.yaml

@@ -1,0 +1,61 @@
+# Stack de documentación. Se puede levantar solo:
+#   docker compose -f docs-stack/compose.yaml --profile docs up
+# o desde el compose raíz del doctorado, que lo incluye.
+
+services:
+  # ---------- Sitio de documentación (el visor principal) ----------
+  docs:
+    profiles: ["docs"]
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: doctorado-docs:latest
+    command: serve --dev-addr 0.0.0.0:8000 --watch-theme
+    ports:
+      - "8000:8000"
+    volumes:
+      - ..:/docs          # monta la RAÍZ del doctorado, no solo docs/
+    environment:
+      # el plugin de fechas falla si el repo no tiene commits todavía
+      GIT_PYTHON_REFRESH: quiet
+
+  # ---------- Build estático (one-shot, para publicar) ----------
+  docs-build:
+    profiles: ["build"]
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: doctorado-docs:latest
+    command: build --strict --site-dir /docs/.site
+    volumes:
+      - ..:/docs
+
+  # ---------- Wiki editable desde el navegador (opcional) ----------
+  # SilverBullet: editas los mismos .md con enlaces [[wiki]] y búsqueda
+  # instantánea, sin salir del navegador. Útil para capturar notas rápido.
+  wiki:
+    profiles: ["wiki"]
+    image: ghcr.io/silverbulletmd/silverbullet:v2
+    ports:
+      - "3000:3000"
+    volumes:
+      - ../docs:/space
+    environment:
+      SB_USER: ${WIKI_USER:-doc}:${WIKI_PASS:-doc}
+
+  # ---------- Higiene de los .md (one-shot) ----------
+  lint-md:
+    profiles: ["lint"]
+    image: davidanson/markdownlint-cli2:v0.14.0
+    working_dir: /work
+    command: ["docs/**/*.md"]
+    volumes:
+      - ..:/work
+
+  link-check:
+    profiles: ["lint"]
+    image: lycheeverse/lychee:latest
+    working_dir: /work
+    command: ["--no-progress", "--cache", "--max-cache-age", "14d", "docs/**/*.md"]
+    volumes:
+      - ..:/work

@@ -1,0 +1,15 @@
+services:
+  bibliometrix:
+    platform: linux/amd64
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: bibliometrix-app
+    ports:
+      - "3838:3838"
+    volumes:
+      - ./shiny-app:/srv/shiny-server/bibliometrix
+      - ./data:/home/shiny/data
+    environment:
+      - SHINY_LOG_LEVEL=INFO
+    restart: unless-stopped

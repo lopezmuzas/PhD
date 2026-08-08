@@ -1,0 +1,7 @@
+# Empareja cada notebook con un .py legible en git (formato "percent").
+# Al guardar en JupyterLab se actualizan los dos ficheros automáticamente.
+formats = "ipynb,py:percent"
+notebook_metadata_filter = "-all"
+cell_metadata_filter = "-all"
+outdated_text_notebook_margin = 5
+

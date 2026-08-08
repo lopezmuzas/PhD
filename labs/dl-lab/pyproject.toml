@@ -1,0 +1,63 @@
+[project]
+name = "dllab"
+version = "0.1.0"
+description = "Laboratorio local para diseñar y entrenar redes neuronales profundas"
+requires-python = ">=3.11"
+dependencies = [
+  # numérico / datos
+  "numpy",
+  "pandas",
+  "scipy",
+  "scikit-learn",
+  "pillow",
+  # visualización
+  "matplotlib",
+  "seaborn",
+  # notebooks
+  "jupyterlab>=4.2",
+  "jupyterlab-lsp",
+  "python-lsp-server[all]",
+  "jupytext>=1.16",
+  "ipywidgets",
+  "ipykernel",
+  # entrenamiento
+  "torchmetrics",
+  "lightning",
+  "tqdm",
+  # experimentos / config / logging
+  "tensorboard",
+  "mlflow",
+  "hydra-core",
+  "omegaconf",
+  "pyyaml",
+  "rich",
+  "python-dotenv",
+]
+
+[project.optional-dependencies]
+dev = [
+  "pytest",
+  "ruff",
+  "nbstripout",
+  "pre-commit",
+]
+# Extras que engordan mucho la imagen: instálalos solo si los necesitas.
+nlp = ["transformers", "datasets", "tokenizers", "accelerate"]
+vision = ["opencv-python-headless", "albumentations", "timm"]
+
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

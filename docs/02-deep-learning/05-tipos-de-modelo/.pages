@@ -1,0 +1,12 @@
+title: "5. Tipos de modelo"
+nav:
+  - "5.1 Modelos clásicos": 5.1-modelos-clasicos.md
+  - "5.2 Combinaciones de modelos": 5.2-combinaciones-de-modelos.md
+  - "5.3 Redes neuronales: la historia": 5.3-redes-neuronales-la-historia.md
+  - "5.3.1 Perceptrón y MLP": 5.3.1-perceptron-y-mlp.md
+  - "5.3.2 CNN — para imágenes": 5.3.2-cnn-para-imagenes.md
+  - "5.3.3 RNN y LSTM — para secuencias": 5.3.3-rnn-y-lstm-para-secuencias.md
+  - "5.3.4 Atención y Transformer": 5.3.4-atencion-y-transformer.md
+  - "5.3.5 Modelos generativos": 5.3.5-modelos-generativos.md
+  - "5.3.6 Redes sobre grafos": 5.3.6-redes-sobre-grafos.md
+  - "5.3.7 Modelos gigantes": 5.3.7-modelos-gigantes.md

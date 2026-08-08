@@ -1,0 +1,8 @@
+title: "3. Cómo se entrena una red"
+nav:
+  - "3.1 El ciclo de entrenamiento": 3.1-el-ciclo-de-entrenamiento.md
+  - "3.2 Backpropagation": 3.2-backpropagation.md
+  - "3.3 Pérdidas y optimizadores": 3.3-perdidas-y-optimizadores.md
+  - "3.4 Regularización": 3.4-regularizacion.md
+  - "3.5 Problemas típicos": 3.5-problemas-tipicos.md
+  - "3.6 Cómo medir si funciona": 3.6-como-medir-si-funciona.md

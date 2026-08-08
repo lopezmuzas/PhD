@@ -1,0 +1,6 @@
+title: "2. Las matemáticas necesarias"
+nav:
+  - "2.1 Álgebra lineal": 2.1-algebra-lineal.md
+  - "2.2 Derivadas y regla de la cadena": 2.2-derivadas-y-regla-de-la-cadena.md
+  - "2.3 Probabilidad": 2.3-probabilidad.md
+  - "2.4 Optimización": 2.4-optimizacion.md
