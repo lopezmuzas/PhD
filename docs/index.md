@@ -12,9 +12,9 @@ Bienvenido al repositorio de conocimiento del doctorado, organizado en **5 bloqu
 
 Contexto, matemáticas y biología que dan base al Deep Learning.
 
-- [1. Qué es y de dónde viene](01-fundamentos/01-que-es-y-de-donde-viene/)
-- [2. Las matemáticas necesarias](01-fundamentos/02-las-matematicas-necesarias/)
-- [3. Cómo se entrena una red](01-fundamentos/03-como-se-entrena-una-red/)
+- [1. Qué es y de dónde viene](01-fundamentos/01-que-es-y-de-donde-viene/index.md)
+- [2. Las matemáticas necesarias](01-fundamentos/02-las-matematicas-necesarias/index.md)
+- [3. Cómo se entrena una red](01-fundamentos/03-como-se-entrena-una-red/index.md)
 
 ---
 
@@ -22,9 +22,9 @@ Contexto, matemáticas y biología que dan base al Deep Learning.
 
 Los paradigmas de aprendizaje, las familias de modelos y dónde están los datos.
 
-- [4. Formas de aprender](02-deep-learning/04-formas-de-aprender/)
-- [5. Tipos de modelo](02-deep-learning/05-tipos-de-modelo/)
-- [6. Dónde están los datos](02-deep-learning/06-donde-estan-los-datos/)
+- [4. Formas de aprender](02-deep-learning/04-formas-de-aprender/index.md)
+- [5. Tipos de modelo](02-deep-learning/05-tipos-de-modelo/index.md)
+- [6. Dónde están los datos](02-deep-learning/06-donde-estan-los-datos/index.md)
 
 ---
 
@@ -32,11 +32,11 @@ Los paradigmas de aprendizaje, las familias de modelos y dónde están los datos
 
 La capa de gobernanza que hace posible el aprendizaje federado entre organizaciones distintas.
 
-- [1. Introducción — Por qué los datos no se pueden centralizar](03-data-spaces/01-introduccion/)
-- [2. Aprendizaje Federado](03-data-spaces/02-aprendizaje-federado/)
-- [3. Data Spaces y Gobernanza](03-data-spaces/03-data-spaces-gobernanza/)
-- [4. Paradigmas FL en Data Spaces](03-data-spaces/04-paradigmas-fl/)
-- [5. Retos de Investigación](03-data-spaces/05-retos-investigacion/)
+- [1. Introducción — Por qué los datos no se pueden centralizar](03-data-spaces/01-introduccion/index.md)
+- [2. Aprendizaje Federado](03-data-spaces/02-aprendizaje-federado/index.md)
+- [3. Data Spaces y Gobernanza](03-data-spaces/03-data-spaces-gobernanza/index.md)
+- [4. Paradigmas FL en Data Spaces](03-data-spaces/04-paradigmas-fl/index.md)
+- [5. Retos de Investigación](03-data-spaces/05-retos-investigacion/index.md)
 
 ---
 
@@ -44,10 +44,10 @@ La capa de gobernanza que hace posible el aprendizaje federado entre organizacio
 
 El laboratorio práctico: combinaciones, guía de entorno, notebooks y diario de experimentación.
 
-- [7. Combinaciones](04-proyecto/07-combinaciones/)
-- [8. Guía de Ejecución](04-proyecto/08-guia-entorno/)
-- [9. Índice de Notebooks](04-proyecto/09-indice-notebooks/)
-- [10. Diario / Bitácora](04-proyecto/10-bitacora-experimentos/)
+- [7. Combinaciones](04-proyecto/07-combinaciones/index.md)
+- [8. Guía de Ejecución](04-proyecto/08-guia-entorno/index.md)
+- [9. Índice de Notebooks](04-proyecto/09-indice-notebooks/index.md)
+- [10. Diario / Bitácora](04-proyecto/10-bitacora-experimentos/index.md)
 
 ---
 
