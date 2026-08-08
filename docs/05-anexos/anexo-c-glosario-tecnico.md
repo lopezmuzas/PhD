@@ -166,7 +166,7 @@ status: revisado
 | ecuación de Bellman | La recursión que define el valor óptimo |
 | ε-greedy, UCB | Estrategias de exploración |
 | Q-learning, SARSA, DQN | Métodos basados en valor (DQN = Q-learning + red + replay) |
-| experience replay | Buffer de experiencias pasadas para reutilizar (→ 1.2.5, replay biológico) |
+| experience replay | Buffer de experiencias pasadas para reutilizar (→ 1.3.5, replay biológico) |
 | REINFORCE, policy gradient | Optimizar la política directamente |
 | actor-crítico, A2C, SAC, TD3 | Política (actor) + evaluador (crítico) |
 | TRPO, **PPO** | Limitar cuánto cambia la política por paso; PPO es el estándar |

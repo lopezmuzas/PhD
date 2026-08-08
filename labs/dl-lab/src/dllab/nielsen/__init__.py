@@ -1,6 +1,6 @@
 """Implementación desde cero siguiendo el libro de Michael Nielsen.
 
-Ver notebooks/nielsen/ para la serie explicada paso a paso.
+Ver notebooks/ (distribuidos por temática) para la serie explicada paso a paso.
 """
 
 from dllab.nielsen.data import load_mnist, load_mnist_arrays, one_hot, submuestra

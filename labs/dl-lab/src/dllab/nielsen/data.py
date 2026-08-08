@@ -19,7 +19,7 @@ import numpy as np
 Ejemplo = tuple[np.ndarray, np.ndarray]
 Conjunto = list[Ejemplo]
 
-DEFAULT_ROOT = Path("data/raw")
+DEFAULT_ROOT = Path(__file__).resolve().parents[3] / "data" / "raw"
 
 
 def _descargar(root: Path) -> tuple[np.ndarray, np.ndarray, np.ndarray, np.ndarray]:

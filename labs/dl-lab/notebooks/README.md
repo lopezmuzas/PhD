@@ -1,49 +1,62 @@
-# 📂 Estructura de Notebooks por Módulos y Temas
+# 📂 Estructura de Notebooks por Temática
 
-Para evitar acumular decenas de notebooks sueltos en la raíz, los cuadernos de laboratorio están organizados secuencialmente por módulos pedagógicos y temas:
+Para facilitar el aprendizaje y la experimentación, los cuadernos de laboratorio (`notebooks/`) están organizados siguiendo **la misma estructura temática** que la documentación del proyecto (`docs/`). De este modo, puedes correlacionar directamente la teoría con el código práctico.
+
+## 🗺️ Mapa de Contenidos y Notebooks
+
+A continuación se muestra la correspondencia entre los módulos temáticos y los cuadernos interactivos actuales:
 
 ```text
 notebooks/
-├── others/
-│   └── 00_smoke_test.ipynb           # Verificación de entorno, PyTorch, GPU/MPS y dllab
-├── 01_perceptron_y_fundamentos/
-│   ├── 01_01_perceptron_rosenblatt_1958.ipynb   # El Perceptrón original (AND, OR, fracaso en XOR)
-│   └── 01_02_adaline_regla_delta.ipynb          # ADALINE y descenso de gradiente (Widrow-Hoff)
-├── 02_mlp_y_clasificacion/
-│   ├── 02_01_mlp_clasificacion_sintetica.ipynb  # Superando XOR y frontera Make Moons con MLP
-│   └── 02_02_mlp_mnist_numeros.ipynb             # Clasificación de dígitos manuscritos (MNIST)
-└── 03_cnn_y_vision/
-    └── 03_01_introduccion_convnet.ipynb         # Primeras convoluciones para visión por computador
+├── 01-fundamentos/
+│   ├── 01-que-es-y-de-donde-viene/
+│   │   ├── 01_01_perceptron_rosenblatt_1958.ipynb   # El Perceptrón clásico (Rosenblatt 1958)
+│   │   └── 01_02_arboles_bosques_y_boosting.ipynb   # ML clásico: árboles, RF, boosting, XGBoost/LightGBM
+│   ├── 02-las-matematicas-necesarias/
+│   │   └── .gitkeep
+│   └── 03-como-se-entrena-una-red/
+│       └── .gitkeep
+├── 02-deep-learning/
+│   ├── 04-formas-de-aprender/
+│   │   └── .gitkeep                                 # (Preparado para notebooks de aprendizaje supervisado/refuerzo)
+│   ├── 05-tipos-de-modelo/
+│   │   └── .gitkeep
+│   └── 06-donde-estan-los-datos/
+│       └── .gitkeep                                 # (Preparado para notebooks de datos distribuidos/federados)
+├── 03-data-spaces/
+│   └── [01 al 05]/.gitkeep                          # (Preparado para experimentación en gobernanza y espacios de datos)
+├── 04-proyecto/
+│   ├── 07-combinaciones/.gitkeep
+│   ├── 08-guia-entorno/
+│   │   └── 00_smoke_test.ipynb                      # Test de entorno: CUDA, GPU y aceleración MPS
+│   ├── 09-indice-notebooks/.gitkeep
+│   └── 10-bitacora-experimentos/.gitkeep
+├── 05-anexos/
+│   └── .gitkeep
+└── 06-others/
+    └── nielsen/                                     # Serie basada en Neural Networks and Deep Learning (M. Nielsen)
+        ├── 01_el_problema.ipynb                     # Serie Nielsen 01: El problema MNIST e introducción
+        ├── 02_descenso_del_gradiente.ipynb          # Serie Nielsen 02: Descenso de Gradiente (SGD)
+        ├── 03_backpropagation.ipynb                 # Serie Nielsen 03: Ecuaciones y Backprop manual
+        ├── 04_red_completa_mnist.ipynb              # Serie Nielsen 04: Red completa entrenada desde cero
+        ├── 05_mejoras_del_aprendizaje.ipynb         # Serie Nielsen 05: Regularización L2 y Entropía Cruzada
+        └── 06_puente_a_pytorch.ipynb                # Serie Nielsen 06: Migración de red MLP a PyTorch y PyTorch CNN
 ```
-
----
-
-## 🏷️ Convenciones de Nomenclatura
-
-`MM_NN_tema_descripcion.ipynb`
-* **`MM` (Módulo)**: Categoría principal (`others` para tests/utilidades sueltas, `01` Fundamentos, `02` MLP, `03` CNN...)
-* **`NN` (Orden)**: Número secuencial dentro del módulo (`01`, `02`, `03`...)
-
-| Módulo | Enfoque Pedagógico |
-|---|---|
-| `others` | Smoke tests, verificaciones de entorno PyTorch, comprobación de GPU/MPS y utilidades varias. |
-| `01_perceptron_y_fundamentos` | Modelos lineales de una sola capa, Rosenblatt, ADALINE, fronteras de decisión rectilíneas y separación lineal. |
-| `02_mlp_y_clasificacion` | Redes multicapa (MLP), funciones de activación (ReLU/Sigmoid), backpropagation y datasets reales (MNIST/Fashion-MNIST). |
-| `03_cnn_y_vision` | Convoluciones, Pooling, aumento de datos y visión por computador. |
 
 ---
 
 ## ⚡ Emparejado automático con Jupytext
 
-Cada `.ipynb` mantiene un archivo `.py` gemelo gracias a `jupytext`.
-* Al editar o ejecutar el notebook en JupyterLab, la versión `.py` se sincroniza automáticamente para facilitar el control de versiones en `git`.
-* Para sincronizar manualmente todos los subdirectorios:
+Cada archivo `.ipynb` mantiene un archivo `.py` gemelo en su mismo directorio usando `jupytext`.
+* Al editar o guardar un notebook interactivo en JupyterLab, su script `.py` correspondiente se actualiza de forma automática para facilitar el control de versiones limpio en `git`.
+* Si editas un script `.py` directamente en tu editor de código o IDE favorito, puedes sincronizar y regenerar el notebook ejecutando desde la raíz del laboratorio:
   ```bash
-  jupytext --sync notebooks/*/*.ipynb
+  make sync
   ```
+  *(Este comando ejecutará de forma interna `find notebooks -name "*.ipynb" -exec jupytext --sync {} +` dentro del contenedor).*
 
 ---
 
 ## 🚀 Ejecución en Google Colab
 
-Cada notebook cuenta en sus primeras celdas con el bloque de **Bootstrap Automático**, el cual detecta si se ejecuta en Colab o en Docker local para clonar el repositorio e instalar la librería local `dllab` en modo editable.
+Cada cuaderno cuenta con un bloque de **Bootstrap Automático** en sus celdas iniciales que detecta de forma dinámica si se está ejecutando en un entorno de Google Colab o local (Docker). En caso de Colab, clona el repositorio del proyecto e instala la librería local `dllab` en modo editable para que todas las importaciones y carga de datos funcionen de inmediato.

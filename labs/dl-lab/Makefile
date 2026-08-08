@@ -46,7 +46,7 @@ mlflow:  ## Servidor MLflow -> http://localhost:5000
 	$(COMPOSE) --profile tracking up -d mlflow
 
 sync:  ## Sincroniza .ipynb <-> .py con jupytext
-	$(COMPOSE) --profile cpu exec lab jupytext --sync notebooks/*.ipynb
+	$(COMPOSE) --profile cpu exec lab find notebooks -name "*.ipynb" -exec jupytext --sync {} +
 
 test:  ## Tests
 	$(COMPOSE) --profile cpu exec lab pytest -q

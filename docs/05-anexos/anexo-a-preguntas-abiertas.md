@@ -86,7 +86,7 @@ status: esbozo
 
 - **Olvido catastrófico** — el gradiente sobrescribe lo anterior.
 - **Estabilidad vs plasticidad** — el mismo dilema que el cerebro resuelve con
-  plasticidad homeostática (→ 1.2.5).
+  plasticidad homeostática (→ 1.3.5).
 - **Memorias a varias velocidades** — módulos que se actualizan a distintas
   frecuencias (Titans, Nested Learning).
 - **En contexto vs en pesos** — dos memorias distintas; cuándo usar cada una.

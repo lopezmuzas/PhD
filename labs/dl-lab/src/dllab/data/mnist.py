@@ -7,7 +7,7 @@ from pathlib import Path
 import torch
 from torch.utils.data import DataLoader, Subset, TensorDataset
 
-DEFAULT_ROOT = Path("data/raw")
+DEFAULT_ROOT = Path(__file__).resolve().parents[3] / "data" / "raw"
 
 # Media y desviación típica del conjunto de entrenamiento de MNIST.
 MEDIA, DESV = 0.1307, 0.3081

@@ -9,6 +9,7 @@ caches/
 .pytest_cache/
 .ruff_cache/
 .virtual_documents/
+.silverbullet.auth.json
 
 # Logs y temporales
 *.log
@@ -19,6 +20,9 @@ __pycache__/
 *.pyc
 .venv/
 venv/
+
+# Podcasts/audio generados con NotebookLM (solo locales, no versionados)
+docs/**/media/
 
 # Cómputo local de laboratorio (se mantienen las carpetas vacías con .gitkeep si existen)
 labs/dl-lab/outputs/runs/*
