@@ -1,7 +1,0 @@
-title: Redes neuronales
-nav:
-  - biblia-mlp-a-transformers.md
-  - backpropagation-de-menos-a-mas.md
-  - batch-normalization.md
-  - dl-antes-de-attention.md
-  - attention-is-all-you-need.md

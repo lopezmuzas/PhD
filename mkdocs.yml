@@ -45,7 +45,6 @@ plugins:
   # así no tienes que tocar este YAML cada vez que añades una nota.
   - awesome-pages
   - tags:
-      tags_file: meta/tags.md
   - git-revision-date-localized:
       type: timeago
       locale: es
