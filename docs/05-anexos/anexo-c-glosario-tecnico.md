@@ -11,7 +11,7 @@ status: revisado
 > guía pertenece. Organizado por familias, no alfabéticamente, para que los
 > términos vecinos se aprendan juntos.
 
-## C.1 Activaciones (→ 3.1, 5.3.1)
+## C.1 Activaciones (→ 3.1, 5.4.1)
 | Término | Qué es |
 |---|---|
 | sigmoide, tanh | Las históricas; saturan y matan el gradiente en profundidad |
@@ -109,7 +109,7 @@ status: revisado
 | SSM, **Mamba**, S4 | Modelos de espacio de estados: recurrencia paralelizable |
 | Titans, Nested Learning | Módulos de memoria a varias frecuencias contra el olvido |
 
-## C.8 Modelos generativos (→ 5.3.5)
+## C.8 Modelos generativos (→ 5.4.5)
 | Término | Qué es |
 |---|---|
 | ELBO | La cota que optimiza un VAE (reconstrucción + KL) |
@@ -129,7 +129,7 @@ status: revisado
 | autoregresivo | Generar pieza a pieza condicionando en lo anterior |
 | JEPA, world model, Dreamer, Genie | Aprender un modelo del mundo prediciendo el futuro |
 
-## C.9 Grafos y simetrías (→ 5.3.6)
+## C.9 Grafos y simetrías (→ 5.4.6)
 | Término | Qué es |
 |---|---|
 | message passing | Cada nodo agrega info de sus vecinos y se actualiza |
@@ -141,7 +141,7 @@ status: revisado
 | Deep Sets | Funciones sobre conjuntos sin orden |
 | PINN, neural operator (FNO) | Redes con física en la pérdida / que aprenden operadores |
 
-## C.10 Modelos gigantes (→ 5.3.7)
+## C.10 Modelos gigantes (→ 5.4.7)
 | Término | Qué es |
 |---|---|
 | foundation model | Modelo base genérico adaptable a muchas tareas |

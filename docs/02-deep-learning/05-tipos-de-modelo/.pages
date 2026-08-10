@@ -1,12 +1,16 @@
 title: "5. Tipos de modelo"
 nav:
-  - "5.1 Modelos clásicos": 5.1-modelos-clasicos.md
-  - "5.2 Combinaciones de modelos": 5.2-combinaciones-de-modelos.md
-  - "5.3 Redes neuronales: la historia": 5.3-redes-neuronales-la-historia.md
-  - "5.3.1 Perceptrón y MLP": 5.3.1-perceptron-y-mlp.md
-  - "5.3.2 CNN — para imágenes": 5.3.2-cnn-para-imagenes.md
-  - "5.3.3 RNN y LSTM — para secuencias": 5.3.3-rnn-y-lstm-para-secuencias.md
-  - "5.3.4 Atención y Transformer": 5.3.4-atencion-y-transformer.md
-  - "5.3.5 Modelos generativos": 5.3.5-modelos-generativos.md
-  - "5.3.6 Redes sobre grafos": 5.3.6-redes-sobre-grafos.md
-  - "5.3.7 Modelos gigantes": 5.3.7-modelos-gigantes.md
+  - "5.0 Sin modelo": 5.0-baselines-y-heuristicas.md
+  - "5.1 Clásicos": 5.1-modelos-clasicos.md
+  - "5.2 Árboles y boosting": 5.2-arboles-y-boosting.md
+  - "5.3 Probabilísticos": 5.3-modelos-probabilisticos.md
+  - "5.4 Redes neuronales: la historia": 5.4-redes-neuronales-la-historia.md
+  - "5.4.1 Perceptrón y MLP": 5.4.1-perceptron-y-mlp.md
+  - "5.4.2 CNN — para imágenes": 5.4.2-cnn-para-imagenes.md
+  - "5.4.3 RNN y LSTM — para secuencias": 5.4.3-rnn-y-lstm-para-secuencias.md
+  - "5.4.4 Atención y Transformer": 5.4.4-atencion-y-transformer.md
+  - "5.4.5 Modelos generativos": 5.4.5-modelos-generativos.md
+  - "5.4.6 Redes sobre grafos": 5.4.6-redes-sobre-grafos.md
+  - "5.4.7 Modelos gigantes": 5.4.7-modelos-gigantes.md
+  - "5.5 Preentrenados": 5.5-modelos-preentrenados.md
+  - "5.6 Ensembles": 5.6-ensembles.md
