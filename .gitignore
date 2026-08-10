@@ -29,3 +29,6 @@ labs/dl-lab/outputs/runs/*
 labs/dl-lab/outputs/checkpoints/*
 !labs/dl-lab/outputs/runs/.gitkeep
 !labs/dl-lab/outputs/checkpoints/.gitkeep
+
+# Datasets que los notebooks de terceros descargan al ejecutarse
+labs/dl-lab/notebooks/06-others/karpathy/input.txt

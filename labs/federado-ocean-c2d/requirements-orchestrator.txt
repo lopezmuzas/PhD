@@ -1,0 +1,6 @@
+# Dependencias del ORQUESTADOR (tu maquina). NO van dentro de la imagen C2D:
+# el contenedor no tiene red y jamas habla con Ocean.
+-r requirements.txt
+requests==2.32.3
+eth-account==0.13.4
+eth-utils==5.1.0

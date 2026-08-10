@@ -1,0 +1,14 @@
+title: "11. Federado sobre Data Spaces"
+nav:
+  - "11. Índice general": 11-indice.md
+  - "11.0 Por qué existe esta sección": 11.0-por-que-existe-esta-seccion.md
+  - "11.1 Visión general": 11.1-vision-general.md
+  - "11.2 Lab 0: Federado puro": 11.2-lab0-federado-puro.md
+  - "11.3 Lab 1: Patrón de ficheros": 11.3-lab1-patron-de-ficheros.md
+  - "11.4 Lab 2: El contenedor": 11.4-lab2-el-contenedor.md
+  - "11.5 Lab 3: ocean-node": 11.5-lab3-ocean-node.md
+  - "11.6 El contrato C2D": 11.6-contrato-c2d.md
+  - "11.7 Troubleshooting": 11.7-troubleshooting.md
+  - "11.8 Dónde encaja Flower": 11.8-donde-encaja-flower.md
+  - "11.9 Recursos y glosario": 11.9-recursos-y-glosario.md
+  - "11.10 Cómo está montado": 11.10-como-esta-montado.md

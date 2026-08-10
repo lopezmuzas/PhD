@@ -1,0 +1,4 @@
+# Runtime del CONTENEDOR C2D. Deliberadamente minimo: solo NumPy.
+# Imagen resultante ~150 MB. Con PyTorch serian ~2 GB y el nodo tarda
+# varios minutos solo en hacer pull en cada job.
+numpy==2.1.3

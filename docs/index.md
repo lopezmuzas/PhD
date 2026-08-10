@@ -48,6 +48,8 @@ El laboratorio práctico: combinaciones, guía de entorno, notebooks y diario de
 - [8. Guía de Ejecución](04-proyecto/08-guia-entorno/index.md)
 - [9. Índice de Notebooks](04-proyecto/09-indice-notebooks/index.md)
 - [10. Diario / Bitácora](04-proyecto/10-bitacora-experimentos/index.md)
+- [11. Federado sobre Data Spaces](04-proyecto/11-federado-sobre-data-spaces/11-indice.md)
+- [12. Federado con FELT Labs](04-proyecto/12-federado-con-felt-labs/12-indice.md)
 
 ---
 

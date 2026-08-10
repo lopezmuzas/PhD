@@ -1,0 +1,12 @@
+title: "12. Federado con FELT Labs"
+nav:
+  - "12. Índice general": 12-indice.md
+  - "12.0 Por qué existe esta sección": 12.0-por-que-existe-esta-seccion.md
+  - "12.1 Qué es FELT Labs": 12.1-que-es-felt-labs.md
+  - "12.2 El protocolo de doble ciego": 12.2-el-protocolo-de-doble-ciego.md
+  - "12.3 Lab 0: El protocolo en memoria": 12.3-lab0-el-protocolo-en-memoria.md
+  - "12.4 Lab 1: Dos algoritmos": 12.4-lab1-dos-algoritmos.md
+  - "12.5 Lab 2: El contenedor": 12.5-lab2-el-contenedor.md
+  - "12.6 FELT frente a Sección 11": 12.6-felt-frente-a-la-seccion-11.md
+  - "12.7 Estado del proyecto": 12.7-estado-del-proyecto.md
+  - "12.8 Recursos y glosario": 12.8-recursos-y-glosario.md

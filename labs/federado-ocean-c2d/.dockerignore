@@ -1,0 +1,11 @@
+docs/
+tests/
+examples/
+data/
+work/
+results/
+.git/
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
