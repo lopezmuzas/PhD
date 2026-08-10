@@ -1,7 +1,11 @@
 title: "4. Formas de aprender"
 nav:
-  - "4.1 Con etiquetas (supervisado)": 4.1-con-etiquetas-supervisado.md
-  - "4.2 Con el propio dato (auto-supervisado)": 4.2-con-el-propio-dato-auto-supervisado.md
-  - "4.3 Sin etiquetas (no supervisado)": 4.3-sin-etiquetas-no-supervisado.md
-  - "4.4 Por prueba y error (refuerzo)": 4.4-por-prueba-y-error-refuerzo.md
-  - "4.5 Mezclas": 4.5-mezclas.md
+  - "4.1 Con etiquetas: supervisado": 4.1-con-etiquetas-supervisado.md
+  - "4.2 Sin etiquetas: no supervisado": 4.2-sin-etiquetas-no-supervisado.md
+  - "4.3 Con el propio dato: auto-supervisado": 4.3-con-el-propio-dato-auto-supervisado.md
+  - "4.4 Copiando a un experto: imitación": 4.4-copiando-a-un-experto-imitacion.md
+  - "4.5 Comparando opciones: preferencias": 4.5-comparando-opciones-preferencias.md
+  - "4.6 Por prueba y error: refuerzo": 4.6-por-prueba-y-error-refuerzo.md
+  - "4.7 De otro modelo: destilación": 4.7-de-otro-modelo-destilacion.md
+  - "4.8 El pipeline real": 4.8-el-pipeline-real.md
+
