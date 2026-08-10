@@ -19,3 +19,4 @@ componentes aislados.
 | [7.2](7.2-refuerzo-mas-federado.md) | FRL: qué se rompe al federar refuerzo |
 | [7.3](7.3-offline-federado-data-spaces.md) | La pila completa del proyecto |
 | [7.4](7.4-tabla-de-experimentos.md) | El plan experimental |
+| [7.5](7.5-guia-practica-flower-ocean-c2d.md) | Guía práctica: código y arquitectura Flower + Ocean C2D |
