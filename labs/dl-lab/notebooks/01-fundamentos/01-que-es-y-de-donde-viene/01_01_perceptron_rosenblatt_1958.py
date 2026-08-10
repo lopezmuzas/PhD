@@ -213,3 +213,5 @@ print(f"\n✅ Accuracy final en test (MNIST 0 vs 1): {test_acc.item()*100:.2f}%"
 # 2. Sin embargo, no puede aprender patrones complejos no lineales ni distinguir 10 clases simultáneamente sin combinar múltiples neuronas en capas ocultas (**MLP - Perceptrón Multicapa**).
 #
 # 👈 **Siguiente paso:** Dirígete a `02_mlp_y_clasificacion/` para construir tu primer MLP y superar la barrera del XOR y MNIST multiclase.
+
+# %%

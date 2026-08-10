@@ -34,14 +34,28 @@ notebooks/
 ├── 05-anexos/
 │   └── .gitkeep
 └── 06-others/
-    └── nielsen/                                     # Serie basada en Neural Networks and Deep Learning (M. Nielsen)
-        ├── 01_el_problema.ipynb                     # Serie Nielsen 01: El problema MNIST e introducción
-        ├── 02_descenso_del_gradiente.ipynb          # Serie Nielsen 02: Descenso de Gradiente (SGD)
-        ├── 03_backpropagation.ipynb                 # Serie Nielsen 03: Ecuaciones y Backprop manual
-        ├── 04_red_completa_mnist.ipynb              # Serie Nielsen 04: Red completa entrenada desde cero
-        ├── 05_mejoras_del_aprendizaje.ipynb         # Serie Nielsen 05: Regularización L2 y Entropía Cruzada
-        └── 06_puente_a_pytorch.ipynb                # Serie Nielsen 06: Migración de red MLP a PyTorch y PyTorch CNN
+    ├── nielsen/                                     # Serie basada en Neural Networks and Deep Learning (M. Nielsen)
+    │   ├── 01_el_problema.ipynb                     # Serie Nielsen 01: El problema MNIST e introducción
+    │   ├── 02_descenso_del_gradiente.ipynb          # Serie Nielsen 02: Descenso de Gradiente (SGD)
+    │   ├── 03_backpropagation.ipynb                 # Serie Nielsen 03: Ecuaciones y Backprop manual
+    │   ├── 04_red_completa_mnist.ipynb              # Serie Nielsen 04: Red completa entrenada desde cero
+    │   ├── 05_mejoras_del_aprendizaje.ipynb         # Serie Nielsen 05: Regularización L2 y Entropía Cruzada
+    │   └── 06_puente_a_pytorch.ipynb                # Serie Nielsen 06: Migración de red MLP a PyTorch y PyTorch CNN
+    ├── udlbook/                                     # Cuadernos oficiales de Understanding Deep Learning (S. Prince, MIT)
+    │   ├── README.md                                # Índice por capítulo, licencia y dependencias extra
+    │   ├── Chap01/ … Chap13/                        # Fundamentos → CNN, ResNet, Transformers, grafos
+    │   └── Chap15/ … Chap21/                        # GANs, flows, VAE, difusión, RL, teoría y ética
+    └── karpathy/                                    # Serie Neural Networks: Zero To Hero (A. Karpathy)
+        ├── README.md                                # Procedencia, licencia y recorrido del cuaderno
+        ├── gpt_dev.ipynb                            # "Let's build GPT": de bigrama a Transformer sobre tiny shakespeare
+        ├── nanoGPT-como-probarlo.md                 # Guía de ejecución en este equipo (MPS, deps, límites en 8 GB)
+        └── nanoGPT/                                 # Copia de karpathy/nanoGPT (MIT): train.py, sample.py, model.py, config/
 ```
+
+> Las series `udlbook/` y `karpathy/` son **copias fieles de sus fuentes**: mantienen los
+> nombres y las salidas originales y **no** versionan los `.py` gemelos, para poder
+> re-sincronizarlas sin conflictos. Ver sus README —
+> [udlbook](06-others/udlbook/README.md), [karpathy](06-others/karpathy/README.md).
 
 ---
 

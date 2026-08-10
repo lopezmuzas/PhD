@@ -259,3 +259,7 @@ print(f"Total de parámetros a ajustar: {n_pesos + n_sesgos:,}")
 #    neurona sigmoide? (Pista: dibuja $\sigma(cz)$ para $c$ grande.)
 # 3. Normaliza las plantillas antes de comparar (distancia coseno en vez de
 #    euclídea). ¿Mejora el 82%?
+
+# %%
+
+# %%
