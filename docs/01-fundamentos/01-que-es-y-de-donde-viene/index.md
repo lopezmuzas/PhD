@@ -18,5 +18,6 @@ preguntas que organiza todo el resto de la guía.
 | [1.3](1.3-la-neurona-biologica.md) | ¿Qué copiamos del cerebro y qué descartamos? |
 | [1.4](1.4-del-perceptron-a-gpt.md) | ¿Por qué existe cada arquitectura? |
 | [1.5](1.5-las-tres-preguntas.md) | ¿Cómo se describe cualquier sistema de ML? |
+| [1.6](1.6-rl-offline-el-problema.md) | ¿Por qué quitar la interacción con el entorno no es una variante menor del RL, sino un problema estructuralmente distinto y difícil? |
 
 Si solo lees una, que sea **1.5**: es el mapa con el que se sitúa todo lo demás.

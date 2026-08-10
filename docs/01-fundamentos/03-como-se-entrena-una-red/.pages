@@ -1,8 +1,13 @@
 title: "3. Cómo se entrena una red"
 nav:
+  - "3.0 Los datos, antes del modelo": 3.0-los-datos.md
   - "3.1 El ciclo de entrenamiento": 3.1-el-ciclo-de-entrenamiento.md
   - "3.2 Backpropagation": 3.2-backpropagation.md
   - "3.3 Pérdidas y optimizadores": 3.3-perdidas-y-optimizadores.md
   - "3.4 Regularización": 3.4-regularizacion.md
-  - "3.5 Problemas típicos": 3.5-problemas-tipicos.md
-  - "3.6 Cómo medir si funciona": 3.6-como-medir-si-funciona.md
+  - "3.5 Precisión numérica y memoria": 3.5-precision-y-memoria.md
+  - "3.6 Escalar: de una GPU a muchas": 3.6-escalar-el-entrenamiento.md
+  - "3.7 Transferencia y fine-tuning": 3.7-transferencia-y-finetuning.md
+  - "3.8 Problemas típicos": 3.8-problemas-tipicos.md
+  - "3.9 Cómo medir si funciona": 3.9-como-medir-si-funciona.md
+

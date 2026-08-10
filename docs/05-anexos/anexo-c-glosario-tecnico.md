@@ -52,7 +52,7 @@ status: revisado
 | μP (muP) | Transferir hiperparámetros de un modelo pequeño a uno grande |
 | grid / random / bayesiana / ASHA | Estrategias de búsqueda de hiperparámetros, de peor a mejor |
 
-## C.5 Regularización y patologías (→ 3.4, 3.5)
+## C.5 Regularización y patologías (→ 3.4, 3.8)
 | Término | Qué es |
 |---|---|
 | weight decay / L2, L1 | Penalizar pesos grandes / inducir esparsidad |
@@ -68,7 +68,7 @@ status: revisado
 | data leakage | Información del test se cuela en el entrenamiento |
 | exposure bias | El modelo entrenó viendo la verdad y en inferencia ve sus propios errores |
 
-## C.6 Evaluación (→ 3.6)
+## C.6 Evaluación (→ 3.9)
 | Término | Qué es |
 |---|---|
 | precision, recall, F1 | Acierto en lo dicho / cobertura de lo real / su media armónica |
