@@ -32,7 +32,7 @@ uno esté mal. Las categorías se solapan por construcción:
   se estudia dentro de RL porque el problema que resuelve es de control secuencial.
 
 Trata la tabla como un **mapa de fuentes de señal**, no como una clasificación
-excluyente. Un sistema real usa varias, encadenadas (→ [§4.8](#48-el-pipeline-real-como-se-encadenan)).
+excluyente. Un sistema real usa varias, encadenadas (→ [§4.8](4.8-el-pipeline-real.md)).
 
 ---
 
@@ -51,8 +51,31 @@ excluyente. Un sistema real usa varias, encadenadas (→ [§4.8](#48-el-pipeline
 ★ **El refuerzo es la sección clave de este proyecto.** Las secciones 4.4 y 4.5 son
 su antesala conceptual; conviene leerlas antes.
 
+---
+
+### Los modelos de razonamiento no son una fila de esta tabla
+
+Merecen espacio en el capítulo, pero **no como octava fuente de señal**, porque no
+lo son. Su aprendizaje ya está en la tabla: es la combinación de **Refuerzo sobre
+recompensas verificables (§4.6)**, **Imitación (§4.4)** y **Destilación (§4.7)**.
+
+Lo nuevo en ellos ocurre **después** del entrenamiento, cuando los pesos ya están
+congelados: **cuánto cómputo se gasta al responder**. Eso es otra pregunta, y
+merece un eje propio (→ [§4.9](4.9-modelos-de-razonamiento.md)).
+
+```none
+    Los siete de la tabla         Los modelos de razonamiento
+    ─────────────────────         ───────────────────────────
+    ¿de dónde sale el error       ¿cuánto cómputo se gasta
+     que ajusta los pesos?         al producir la respuesta?
+            │                              │
+    eje ① de → 1.5                 eje ④, que → 1.5 no tenía
+```
+
+→ [§4.9 Coda: cuando el cómputo se mueve a la inferencia](4.9-modelos-de-razonamiento.md)
+
 **Orden de lectura sugerido:** 4.1 → 4.2 → 4.3 (síntesis de las dos anteriores) →
-4.4 → 4.5 → 4.6 → 4.7 → 4.8.
+4.4 → 4.5 → 4.6 → 4.7 → 4.8 → 4.9.
 
 ---
 
@@ -239,7 +262,7 @@ de un modelo caro a uno barato; generar corpus sintéticos de entrenamiento.
 Ningún sistema serio usa un solo paradigma. La secuencia habitual en un modelo de
 lenguaje moderno es:
 
-```
+```none
 1. Auto-supervisado  (§4.3)  →  capacidad bruta, conocimiento del mundo
 2. Imitación / SFT   (§4.4)  →  formato, seguir instrucciones
 3. Preferencias      (§4.5)  →  utilidad, tono, seguridad
@@ -253,8 +276,10 @@ Y la lectura importante de esa secuencia:
   no obediencia. La imitación da obediencia pero no criterio. Las preferencias dan
   criterio pero no capacidad nueva. El refuerzo es el único que puede añadir capacidad
   por encima de sus datos.
-- **El orden no es negociable.** No puedes hacer RLHF sobre un modelo que no genera
-  texto coherente: necesitas algo que comparar.
+- **Hay restricciones duras de orden, pero no es una línea recta.** No puedes hacer
+  RLHF sobre un modelo que no genera texto coherente: necesitas algo que comparar. Pero
+  los pipelines de frontera **iteran** SFT → RL → SFT varias vueltas, y DeepSeek-R1-Zero
+  llegó a aplicar RL directamente sobre el modelo base.
 - **El coste es descendente en datos y ascendente en dificultad.** Billones de tokens
   crudos, luego miles de demostraciones, luego decenas de miles de comparaciones. Cada
   etapa usa muchos menos datos que la anterior, pero son mucho más difíciles de obtener.
@@ -266,37 +291,66 @@ práctica se **componen**.
 
 ---
 
+## 4.9 Coda: cuando el cómputo se mueve a la inferencia
+
+**No añade una fuente de señal.** Añade una pregunta nueva: ¿cuánto cómputo se gasta
+al **responder**?
+
+**Su aprendizaje:** RLVR (§4.6) + SFT (§4.4) + Destilación (§4.7). Nada nuevo.
+
+**Su novedad:** el paso de **Sistema 1** (respuesta rápida autoregresiva, cómputo fijo)
+a **Sistema 2** (deliberación, cadena de pensamiento, verificación, cómputo variable y
+escalable en tiempo de inferencia).
+
+**Por qué importa para este proyecto:** RLVR funciona porque el verificador **es un
+entorno** barato e ilimitado. Es la mejor ilustración posible de lo que se consigue
+cuando *tienes* entorno — y por contraste, de por qué el RL offline (→ 1.6) es duro.
+
+→ [4.9-modelos-de-razonamiento.md](4.9-modelos-de-razonamiento.md)
+
+---
+
 ## Errores frecuentes que conviene desactivar
 
 | Confusión | Aclaración |
 |---|---|
 | "Auto-supervisado = no supervisado" | No. El auto-supervisado tiene etiquetas; las fabrica el dato. |
 | "RLHF es refuerzo" | Parcialmente. La señal son preferencias humanas; el refuerzo es solo el mecanismo de optimización. |
-| "Sin etiquetas no se puede aprender" | El 99 % del cómputo de un LLM se gasta sin una sola etiqueta humana. |
+| "Sin etiquetas no se puede aprender" | El grueso del cómputo de un LLM se gasta sin una sola etiqueta humana. |
 | "El refuerzo es para juegos" | El juego es el laboratorio, no el objetivo. Lo relevante es que no existe respuesta correcta que copiar. |
 | "Más recompensa = mejor modelo" | Solo si la recompensa mide lo que crees. Ver *reward hacking* en §4.5 y §4.6. |
 | "Fine-tuning es un paradigma" | Es una fase del entrenamiento, no una fuente de señal. Cruza con este eje, no compite. |
+| "Razonamiento = nuevo paradigma de aprendizaje" | No en el eje de fuente de señal. Es un eje distinto: **cuánto cómputo se gasta al responder** (§4.9). |
+| "La cadena de pensamiento explica la respuesta" | **No necesariamente.** La traza visible puede no reflejar el cómputo real (§4.9). |
 
 ---
 
-## Recursos
+## Recursos transversales del capítulo
 
-> Espacio para la recopilación. Sugerencia de estructura por sección, para que los
-> materiales queden anclados al concepto y no en una lista suelta.
+Los específicos van en cada sección. Estos cubren el mapa completo:
 
-### Transversales
-- [ ] Vídeo/serie introductoria que cubra el mapa completo
-- [ ] Capítulo de libro de referencia sobre taxonomía de paradigmas
-- [ ] Diagrama propio del pipeline (§4.8) — pendiente de elaborar
+| Recurso | Formato | Nota |
+|---|---|---|
+| [3Blue1Brown — Neural Networks](https://www.3blue1brown.com/topics/neural-networks) | 📺🎮 | No cubre paradigmas, pero es el suelo conceptual de todo lo demás (→ 3.1) |
+| [Understanding Deep Learning](https://udlbook.github.io/udlbook/) (Simon Prince) | 📖 | **Gratuito.** Sus capítulos finales recorren supervisado, no supervisado y RL con figuras |
+| [Dive into Deep Learning](https://d2l.ai) | 📖🛠️ | Libro con notebooks. Útil para tocar cada paradigma con código |
+| [Spinning Up in Deep RL](https://spinningup.openai.com/en/latest/) (OpenAI) | 📚🛠️ | Para §4.6. Su *Taxonomy of RL Algorithms* es el mapa que este capítulo imita |
+| [A Recipe for Training Neural Networks](http://karpathy.github.io/2019/04/25/recipe/) (Karpathy) | 📖 | El protocolo, transversal a cualquier paradigma (→ 3.8) |
+| [RLHF Book](https://rlhfbook.com) (Nathan Lambert) | 📖 | **Gratuito y en desarrollo.** El mejor tratamiento unificado de SFT, preferencias, RLHF y RLVR. Cubre §4.4, §4.5, §4.6 y §4.8 de una vez |
 
-### Por sección
+---
+
+## Recursos por sección — estado
+
+- [x] §4.6 ★ — Spinning Up, Sutton & Barto, CS285 (→ 1.6)
+- [x] §4.8 — Llama 3 report, DeepSeek-R1, alignment-handbook
+- [x] §4.9 — visual guides, papers de test-time compute, open-r1
 - [ ] §4.1 — dataset clásico + arquitectura asociada
+- [ ] §4.2 — material sobre clustering y reducción de dimensionalidad
 - [ ] §4.3 — paper fundacional de la tarea pretexto elegida
 - [ ] §4.4 — material sobre *distribution shift* y composición de errores
-- [ ] §4.5 — paper de RLHF y paper de DPO
-- [ ] §4.6 ★ — libro de referencia de RL, curso en vídeo, papers de policy gradient,
-      material sobre RLVR
-- [ ] §4.7 — paper original de destilación de conocimiento
+- [ ] §4.5 — paper de RLHF (InstructGPT) y paper de DPO
+- [ ] §4.7 — paper original de destilación (Hinton et al. 2015)
 
 **Nota:** cuando incorpores citas concretas, verifica cada referencia en su fuente
 original antes de fijarla en el documento.
