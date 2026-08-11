@@ -1,0 +1,13 @@
+title: "13. Herramientas y variantes"
+nav:
+  - 13-indice.md
+  - 13.0-por-que-existe-esta-seccion.md
+  - 13.1-el-mapa-de-decisiones.md
+  - 13.2-frameworks.md
+  - 13.3-variantes-de-agregacion.md
+  - 13.4-transformers-y-lora-federado.md
+  - 13.5-one-shot-federated-learning.md
+  - 13.6-privacidad-y-seguridad.md
+  - 13.7-la-capa-de-data-space.md
+  - 13.8-la-pila-recomendada.md
+  - 13.9-recursos-por-formato.md
