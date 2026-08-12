@@ -104,7 +104,8 @@ docs/
 │   │                                        │   ├─► 4.5 Preferencias
 │   │                                        │   ├─► 4.6 Refuerzo
 │   │                                        │   ├─► 4.7 Destilación
-│   │                                        │   └─► 4.8 El pipeline real
+│   │                                        │   ├─► 4.8 El pipeline real
+│   │                                        │   └─► 4.9 Modelos de razonamiento
 │   ├── 05-tipos-de-modelo/                  │   ├─► 5.0 Baselines y heurísticas
 │   │                                        │   ├─► 5.1 Modelos clásicos
 │   │                                        │   ├─► 5.2 Árboles y boosting
