@@ -194,3 +194,12 @@ Sé honesto contigo mismo sobre qué está probado y qué no:
 - [ ] Sustituir el learner NumPy por uno de PyTorch y volver a medir la divergencia del ejemplo 02.
 - [ ] Implementar FedProx en `learners/` y comparar con FedAvg bajo `alpha` bajo.
 - [ ] Decidir qué parte de este laboratorio entra en la tesis y qué parte se queda como material de aprendizaje.
+
+<!-- nav-start -->
+
+---
+
+← Anterior: [2026-08-08 Puesta a punto](../10-bitacora-experimentos/2026-08-08-inicio-experimentos.md)  
+Siguiente: [11.0 Por qué existe esta sección](11.0-por-que-existe-esta-seccion.md) →
+
+<!-- nav-end -->

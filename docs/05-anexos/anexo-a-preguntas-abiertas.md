@@ -543,3 +543,12 @@ moverse probablemente no eran preguntas, sino intuiciones. Bórralas sin pena.
 **Regla de oro:** este documento crece hacia abajo (preguntas cerradas), no hacia arriba
 (preguntas nuevas). Si al cabo de seis meses hay más arriba que abajo, se está explorando
 en vez de investigando.
+
+<!-- nav-start -->
+
+---
+
+← Anterior: [14.7-recursos.md](../04-proyecto/14-validacion-por-silo-retenido/14.7-recursos.md)  
+Siguiente: [B. Línea temporal](anexo-b-linea-temporal.md) →
+
+<!-- nav-end -->

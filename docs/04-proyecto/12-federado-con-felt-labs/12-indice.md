@@ -115,3 +115,12 @@ del ruido es exacta, no aproximada.
 - [ ] Decidir si incorporas el cegado a la sección 11 (→ 12.6).
 - [ ] Completar las verificaciones pendientes de → 12.7 antes de citar FELT en
       la tesis como algo más que trabajo relacionado.
+
+<!-- nav-start -->
+
+---
+
+← Anterior: [11.10 Cómo está montado](../11-federado-sobre-data-spaces/11.10-como-esta-montado.md)  
+Siguiente: [12.0 Por qué existe esta sección](12.0-por-que-existe-esta-seccion.md) →
+
+<!-- nav-end -->

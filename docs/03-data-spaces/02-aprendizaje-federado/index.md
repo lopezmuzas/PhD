@@ -121,3 +121,12 @@ En entornos muy heterogéneos (el caso de Data Spaces), puede ser mejor tener **
 - Kairouz et al. (2021). *Advances and Open Problems in Federated Learning*. [arXiv:1912.04977](https://arxiv.org/abs/1912.04977)
 - Abadi et al. (2016). *Deep Learning with Differential Privacy*. [arXiv:1607.00133](https://arxiv.org/abs/1607.00133)
 - Bonawitz et al. (2017). *Practical Secure Aggregation for Privacy-Preserving Machine Learning*. [eprint](https://eprint.iacr.org/2017/281)
+
+<!-- nav-start -->
+
+---
+
+← Anterior: [1. Introducción](../01-introduccion/index.md)  
+Siguiente: [3. Data Spaces y Gobernanza](../03-data-spaces-gobernanza/index.md) →
+
+<!-- nav-end -->

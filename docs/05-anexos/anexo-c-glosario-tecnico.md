@@ -245,3 +245,12 @@ status: revisado
 | Flower, FedML, NVIDIA FLARE, OpenFL | Frameworks federados |
 | LEAF, FedScale, FLamby | Benchmarks federados (FLamby: médico) |
 | deriva de datos / de concepto | El mundo cambia y el modelo desplegado se degrada |
+
+<!-- nav-start -->
+
+---
+
+← Anterior: [B. Línea temporal](anexo-b-linea-temporal.md)  
+Siguiente: [D. Búsqueda bibliográfica WoS](anexo-d-guia-busqueda-wos.md) →
+
+<!-- nav-end -->

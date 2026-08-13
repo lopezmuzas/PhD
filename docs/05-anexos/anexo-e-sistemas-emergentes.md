@@ -81,3 +81,11 @@ Las redes neuronales profundas son un caso particular de **Sistema Adaptativo Co
 | Anthropic — *Transformer Circuits* | Investigación | Avanzado |
 | Hopfield (1982), *Neural networks and physical systems* | Paper Seminal | Experto |
 | Schaeffer et al. (2023), *Are Emergent Abilities a Mirage?* | Paper Debate | Experto |
+
+<!-- nav-start -->
+
+---
+
+← Anterior: [D. Búsqueda bibliográfica WoS](anexo-d-guia-busqueda-wos.md)
+
+<!-- nav-end -->

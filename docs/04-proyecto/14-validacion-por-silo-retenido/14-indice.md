@@ -102,3 +102,12 @@ Lo que hay que entender antes de invertir tiempo:
 - **→ 13.5** — One-shot. El coste en jobs de rotar pliegues empuja en la misma
   dirección.
 - **→ Estrategia, idea ①** — Esta sección es su desarrollo completo.
+
+<!-- nav-start -->
+
+---
+
+← Anterior: [13.9-recursos-por-formato.md](../13-herramientas-y-variantes/13.9-recursos-por-formato.md)  
+Siguiente: [14.0-por-que-existe-esta-seccion.md](14.0-por-que-existe-esta-seccion.md) →
+
+<!-- nav-end -->

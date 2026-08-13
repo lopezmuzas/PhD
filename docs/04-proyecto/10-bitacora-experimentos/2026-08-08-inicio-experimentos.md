@@ -42,3 +42,12 @@ Se levantó el contenedor del laboratorio con el comando `make up-gpu` y se lanz
 ## 📌 Próximos Pasos
 - [ ] Ejecutar el notebook de entrenamiento básico del Perceptrón en la GPU para medir latencia de transferencia de tensores.
 - [ ] Configurar el primer experimento formal con MLflow para validar el registro local de métricas de entrenamiento.
+
+<!-- nav-start -->
+
+---
+
+← Anterior: [index.md](index.md)  
+Siguiente: [11. Índice general](../11-federado-sobre-data-spaces/11-indice.md) →
+
+<!-- nav-end -->

@@ -101,3 +101,12 @@ La alternativa pragmática para Data Spaces corporativos: **elimina la exploraci
 | **Carga de Cómputo** | Media | Baja | **Muy Alta** | Baja | Media-Alta | Media |
 | **Riesgo Operacional** | Medio | Bajo | Bajo | Bajo | **Extremo** | **Bajo (Seguro)** |
 | **Caso de Uso Primario** | Clasificación Estándar | Detección de Anomalías | Extracción Embeddings | Domain Adaptation | Control IoT Dinámico | **Optimización Segura** |
+
+<!-- nav-start -->
+
+---
+
+← Anterior: [3. Data Spaces y Gobernanza](../03-data-spaces-gobernanza/index.md)  
+Siguiente: [5. Retos de Investigación](../05-retos-investigacion/index.md) →
+
+<!-- nav-end -->

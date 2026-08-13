@@ -75,3 +75,12 @@ status: esbozo
    hasta 1986; las CNN son de 1980 y no ganaron hasta 2012.
 3. **Lo viejo vuelve.** La recurrencia murió en 2017 y volvió en 2023. El
    promediado federado de 2016 es hoy la base para entrenar LLM.
+
+<!-- nav-start -->
+
+---
+
+← Anterior: [A. Lo que nadie sabe todavía](anexo-a-preguntas-abiertas.md)  
+Siguiente: [C. Glosario técnico](anexo-c-glosario-tecnico.md) →
+
+<!-- nav-end -->

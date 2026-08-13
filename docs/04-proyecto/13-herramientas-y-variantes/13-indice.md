@@ -112,3 +112,12 @@ demasiado específicos. Fingir lo contrario haría perder el tiempo.
 - **→ 3.7** — Transferencia y fine-tuning. → 13.4 es su capa federada.
 - **→ 3.9** — Cómo medir. Nada de → 13.3 se decide sin intervalos y semillas.
 - **→ 11**, **→ 12** — Los dos pipelines que esta sección enseña a escalar.
+
+<!-- nav-start -->
+
+---
+
+← Anterior: [12.8 Recursos y glosario](../12-federado-con-felt-labs/12.8-recursos-y-glosario.md)  
+Siguiente: [13.0-por-que-existe-esta-seccion.md](13.0-por-que-existe-esta-seccion.md) →
+
+<!-- nav-end -->

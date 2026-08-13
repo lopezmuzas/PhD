@@ -97,3 +97,12 @@ make lint  # Aplica formateador y linter de código (Ruff, markdownlint)
 ```bash
 make down
 ```
+
+<!-- nav-start -->
+
+---
+
+← Anterior: [7.6 Guía práctica: Flower + Ocean C2D](../07-combinaciones/7.6-guia-practica-flower-ocean-c2d.md)  
+Siguiente: [index.md](../09-indice-notebooks/index.md) →
+
+<!-- nav-end -->

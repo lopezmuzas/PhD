@@ -178,3 +178,12 @@ Verificación rápida de disponibilidad de CUDA, tensor operations y aceleració
 | | |
 |---|---|
 | <a href="http://localhost:8888/lab/tree/notebooks/04-proyecto/08-guia-entorno/00_smoke_test.ipynb?token=dev" target="_blank">📓 Abrir Notebook</a> | <a href="http://localhost:8888/lab/tree/notebooks/04-proyecto/08-guia-entorno/00_smoke_test.py?token=dev" target="_blank">🐍 Ver Script</a> |
+
+<!-- nav-start -->
+
+---
+
+← Anterior: [index.md](../08-guia-entorno/index.md)  
+Siguiente: [index.md](../10-bitacora-experimentos/index.md) →
+
+<!-- nav-end -->

@@ -102,3 +102,12 @@ Datos Federados = FL (técnica) + Data Space (gobernanza)
 | **Data Act (2023)** | Derecho de acceso y portabilidad; datos IoT |
 | **AI Act (2024)** | Trazabilidad de datos de entrenamiento para sistemas de IA de alto riesgo |
 | **EHDS** | European Health Data Space — espacio sectorial para datos sanitarios |
+
+<!-- nav-start -->
+
+---
+
+← Anterior: [6.6 Data spaces](../../02-deep-learning/06-donde-estan-los-datos/6.6-data-spaces.md)  
+Siguiente: [2. Aprendizaje Federado](../02-aprendizaje-federado/index.md) →
+
+<!-- nav-end -->

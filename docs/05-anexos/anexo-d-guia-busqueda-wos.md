@@ -83,3 +83,12 @@ TS=(Bloque B AND Bloque D)
 2. **Analizar Resultados por Año (2020-2026)**: Si el número de papers por año es $< 20$, el nicho está en fase de gestación (alta oportunidad).
 3. **Mapear Citation Network**: Exportar las referencias a VosViewer o CitNetExplorer para identificar clusters de autores y encontrar vacíos entre clusters.
 4. **Identificar "Celdas Vacías"**: Cruzar un paradigma de la matriz de la sección 7.1 contra una regulación o infraestructura europea real.
+
+<!-- nav-start -->
+
+---
+
+← Anterior: [C. Glosario técnico](anexo-c-glosario-tecnico.md)  
+Siguiente: [E. Sistemas emergentes](anexo-e-sistemas-emergentes.md) →
+
+<!-- nav-end -->

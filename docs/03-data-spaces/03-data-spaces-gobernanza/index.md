@@ -230,3 +230,12 @@ En un Data Space donde múltiples organizaciones desconfían entre sí, el TEE a
 - [Eclipse EDC](https://projects.eclipse.org/projects/technology.edc) — conector de referencia open-source
 - [Pontus-X](https://pontus-x.eu/) — implementación de referencia Gaia-X
 - Libro open-access: [Designing Data Spaces](https://link.springer.com/book/10.1007/978-3-030-93975-5) — Otto, ten Hompel, Wrobel (eds.)
+
+<!-- nav-start -->
+
+---
+
+← Anterior: [2. Aprendizaje Federado](../02-aprendizaje-federado/index.md)  
+Siguiente: [4. Paradigmas FL en Data Spaces](../04-paradigmas-fl/index.md) →
+
+<!-- nav-end -->

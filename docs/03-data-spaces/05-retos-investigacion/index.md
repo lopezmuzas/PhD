@@ -88,3 +88,12 @@ OPCIÓN 3: Tesis de Mecanismos / Tokenomics (Capa 4)
 - **Ocean Protocol Documentation**: [docs.oceanprotocol.com](https://docs.oceanprotocol.com)
 - **DSSC Blueprint**: [blueprint.dssc.eu](https://blueprint.dssc.eu/)
 - **deltaDAO Pontus-X Use Cases**: [github.com/deltaDAO](https://github.com/deltaDAO/Ocean-Protocol-Use-Cases)
+
+<!-- nav-start -->
+
+---
+
+← Anterior: [4. Paradigmas FL en Data Spaces](../04-paradigmas-fl/index.md)  
+Siguiente: [7.1 Cómo se combinan las 3 decisiones](../../04-proyecto/07-combinaciones/7.1-como-se-mezclan.md) →
+
+<!-- nav-end -->
