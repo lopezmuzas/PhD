@@ -1,0 +1,4 @@
+Explica este bloque de código a alguien que sabe Python pero no sabe nada de
+aprendizaje automático. Sin analogías de cerebros. Máximo 300 palabras.
+
+[PEGAR AQUÍ un bloque de labs/flower-ocean-c2d]

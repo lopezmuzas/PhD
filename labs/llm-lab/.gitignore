@@ -1,0 +1,8 @@
+.env
+proxy/logs/
+mi-modelo/checkpoints/
+mi-modelo/muestras/
+mi-modelo/data/*.txt
+bench/resultados/*.json
+**/__pycache__/
+.venv/

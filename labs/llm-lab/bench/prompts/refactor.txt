@@ -1,0 +1,4 @@
+Refactoriza esta función y explica por qué cada cambio mejora el código.
+No cambies el comportamiento observable.
+
+[PEGAR AQUÍ una función real del dl-lab que no te guste]

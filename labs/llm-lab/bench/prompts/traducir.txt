@@ -1,0 +1,5 @@
+Traduce este párrafo técnico al castellano. Mantén la terminología estándar en
+español cuando exista y deja el término inglés entre paréntesis la primera vez
+que aparezca.
+
+[PEGAR AQUÍ un párrafo de un paper]

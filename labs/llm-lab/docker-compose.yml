@@ -1,0 +1,18 @@
+services:
+  proxy:
+    build: ./proxy
+    container_name: llm-lab-proxy
+    ports: ["127.0.0.1:8080:8080"]
+    env_file: .env
+    volumes:
+      - ./proxy/logs:/app/logs        # los registros sobreviven al contenedor
+    restart: unless-stopped
+
+  mi-modelo:
+    build: ./mi-modelo
+    container_name: llm-lab-modelo
+    ports: ["127.0.0.1:8000:8000"]
+    volumes:
+      - ./mi-modelo/checkpoints:/app/checkpoints
+      - ./mi-modelo/muestras:/app/muestras
+    profiles: ["modelo"]              # docker compose --profile modelo up

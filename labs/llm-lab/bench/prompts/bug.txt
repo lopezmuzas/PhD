@@ -1,0 +1,5 @@
+Este traceback aparece al ejecutar el entrenamiento. Encuentra la causa raíz
+y propón la corrección mínima. Si necesitas ver algún fichero, dilo en vez de
+inventarte su contenido.
+
+[PEGAR AQUÍ un traceback real]

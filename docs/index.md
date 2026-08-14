@@ -52,6 +52,7 @@ El laboratorio práctico: combinaciones, guía de entorno, notebooks y diario de
 - [12. Federado con FELT Labs](04-proyecto/12-federado-con-felt-labs/12-indice.md)
 - [13. Herramientas y variantes](04-proyecto/13-herramientas-y-variantes/13-indice.md)
 - [14. Validación por silo retenido](04-proyecto/14-validacion-por-silo-retenido/14-indice.md)
+- [15. Laboratorio de modelos en el editor](04-proyecto/15-laboratorio-de-modelos-en-el-editor/15-indice.md)
 
 ---
 
@@ -147,7 +148,8 @@ docs/
 │   ├── 11-federado-sobre-data-spaces/       │   ├─► 11.0–11.10 (ocean-node / C2D)
 │   ├── 12-federado-con-felt-labs/           │   ├─► 12.0–12.8 (FELT Labs / doble ciego)
 │   ├── 13-herramientas-y-variantes/         │   ├─► 13.0–13.9 (frameworks, LoRA, one-shot…)
-│   └── 14-validacion-por-silo-retenido/     │   └─► 14.0–14.7 (LOSO, cobertura, OPE)
+│   ├── 14-validacion-por-silo-retenido/     │   ├─► 14.0–14.7 (LOSO, cobertura, OPE)
+│   └── 15-laboratorio-de-modelos-en-el-editor/ │   └─► 15.1–15.7 (proxy, router, LLM lab…)
 │
 └── 05-anexos/                               ──► V. Anexos
     ├── anexo-a-preguntas-abiertas.md

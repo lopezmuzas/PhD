@@ -1,0 +1,5 @@
+Escribe la página de documentación tipo "explicación" (Diátaxis) para este
+módulo. Estilo: castellano, prosa directa, títulos en lenguaje llano con el
+término técnico entre paréntesis, sin listas de viñetas salvo que aporten.
+
+[PEGAR AQUÍ el módulo]

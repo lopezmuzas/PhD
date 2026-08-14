@@ -1,0 +1,468 @@
+name: Main Config
+version: 2.0.0
+schema: v1
+
+# ============================================================
+#  Continue.dev + OpenRouter
+#  Ubicación: ~/.continue/config.yaml  (Windows: %USERPROFILE%\.continue\config.yaml)
+#  Sustituye sk-or-v1-TU_CLAVE por tu clave de https://openrouter.ai/keys
+#  Precios e IDs verificados el 13/08/2026. Cambian a menudo:
+#  comprueba en openrouter.ai/models antes de dar nada por bueno.
+# ============================================================
+
+# ------------------------------------------------------------
+#  CONVENCION DE NOMBRES:  [n/5] Empresa · Modelo · Coste
+#
+#  Escala de potencia (juicio propio, anclado en indices publicos
+#  de Artificial Analysis y en las puntuaciones de calidad que
+#  publica OpenRouter; NO es una metrica oficial unica):
+#    5/5  Frontera. Lo mejor que existe hoy.
+#    4/5  Casi frontera. Diferencia visible solo en tareas duras.
+#    3/5  Solvente. Sirve para el 80% del trabajo diario.
+#    2/5  Util para tareas cortas, resumenes, edits simples.
+#    1/5  Juguete / autocompletado / pruebas de suelo de calidad.
+#    ?/5  Variable (el auto-router elige modelo en cada peticion).
+#
+#  Coste: PAGO / PAGO barato / PAGO minimo / GRATIS / LOCAL
+# ------------------------------------------------------------
+
+models:
+
+  # ==========================================================
+  # NOTA 5/5 — FRONTERA
+  # Lo mejor que existe hoy. Reservalo para cuando algo se atasca.
+  # ==========================================================
+
+  # $2 / $10 por M tokens. 1M contexto. El mejor equilibrio global.
+  - name: "[5/5] Anthropic · Claude Sonnet 5 · PAGO"
+    provider: openrouter
+    model: anthropic/claude-sonnet-5
+    apiBase: https://openrouter.ai/api/v1
+    apiKey: sk-or-v1-TU_CLAVE
+    roles: [chat, edit, apply]
+    defaultCompletionOptions:
+      contextLength: 1000000
+      maxTokens: 64000
+    capabilities: [tool_use, image_input]
+
+  # $2 / $6 por M. 500k contexto. Frontera en coding, STEM y agentes largos.
+  - name: "[5/5] xAI · Grok 4.6 · PAGO"
+    provider: openrouter
+    model: x-ai/grok-4.6
+    apiBase: https://openrouter.ai/api/v1
+    apiKey: sk-or-v1-TU_CLAVE
+    roles: [chat, edit, apply]
+    defaultCompletionOptions:
+      contextLength: 500000
+      maxTokens: 32768
+    capabilities: [tool_use, image_input]
+
+  # ==========================================================
+  # NOTA 4/5 — CASI FRONTERA
+  # La diferencia con 5/5 solo se nota en tareas duras. Aqui vive el 80% del trabajo.
+  # ==========================================================
+
+  # $0.435 / $0.87 por M. 1M contexto, 384k de salida.
+  # SWE-bench Verified 80.6%. Solo texto (sin imagen).
+  - name: "[4/5] DeepSeek · V4 Pro · PAGO barato"
+    provider: openrouter
+    model: deepseek/deepseek-v4-pro
+    apiBase: https://openrouter.ai/api/v1
+    apiKey: sk-or-v1-TU_CLAVE
+    roles: [chat, edit, apply]
+    defaultCompletionOptions:
+      contextLength: 1000000
+      maxTokens: 65536
+    capabilities: [tool_use]
+
+  # Solo 50 peticiones/día en gratis: reservado para consultas difíciles.
+  # Comprueba en ai.google.dev si tu cuenta lo tiene en el tier gratuito.
+  - name: "[4/5] Google · Gemini 2.5 Pro (50/dia) · GRATIS (clave Google)"
+    provider: gemini
+    model: gemini-2.5-pro
+    apiKey: TU_CLAVE_DE_GOOGLE_AI_STUDIO
+    roles: [chat]
+    defaultCompletionOptions:
+      contextLength: 1000000
+      maxTokens: 65536
+    capabilities: [tool_use, image_input]
+
+  # (61) El mejor gratuito. 1M contexto.
+  - name: "[4/5] NVIDIA · Nemotron 3 Ultra 550B · GRATIS"
+    provider: openrouter
+    model: nvidia/nemotron-3-ultra-550b-a55b:free
+    apiBase: https://openrouter.ai/api/v1
+    apiKey: sk-or-v1-TU_CLAVE
+    roles: [chat, edit, apply]
+    defaultCompletionOptions:
+      contextLength: 1000000
+      maxTokens: 16384
+    capabilities: [tool_use]
+
+  # $0.50 / $3.15 por M. 1M contexto. Muy fuerte en tareas agénticas largas.
+  - name: "[4/5] Z.ai · GLM 5.2 · PAGO barato"
+    provider: openrouter
+    model: z-ai/glm-5.2
+    apiBase: https://openrouter.ai/api/v1
+    apiKey: sk-or-v1-TU_CLAVE
+    roles: [chat, edit, apply]
+    defaultCompletionOptions:
+      contextLength: 1000000
+      maxTokens: 65536
+    capabilities: [tool_use]
+
+  # $1.25 / $2.50 por M. 2M contexto. Grok barato para contextos gigantes.
+  - name: "[4/5] xAI · Grok 4.20 (2M ctx) · PAGO"
+    provider: openrouter
+    model: x-ai/grok-4.20
+    apiBase: https://openrouter.ai/api/v1
+    apiKey: sk-or-v1-TU_CLAVE
+    roles: [chat]
+    defaultCompletionOptions:
+      contextLength: 2000000
+      maxTokens: 32768
+    capabilities: [tool_use]
+
+  # ==========================================================
+  # NOTA 3/5 — SOLVENTE
+  # Cubre el trabajo diario: ediciones, resumenes, refactors normales.
+  # ==========================================================
+
+  # $1 / $5 por M. Rápido y muy fiable para aplicar diffs.
+  - name: "[3/5] Anthropic · Claude Haiku 4.5 · PAGO"
+    provider: openrouter
+    model: anthropic/claude-haiku-4.5
+    apiBase: https://openrouter.ai/api/v1
+    apiKey: sk-or-v1-TU_CLAVE
+    roles: [edit, apply]
+    defaultCompletionOptions:
+      contextLength: 200000
+      maxTokens: 16384
+    capabilities: [tool_use]
+
+  - name: "[3/5] DeepSeek · R1 · GRATIS (clave NVIDIA)"
+    provider: openai
+    model: deepseek-ai/deepseek-r1
+    apiBase: https://integrate.api.nvidia.com/v1
+    apiKey: nvapi-TU_CLAVE_DE_NVIDIA
+    roles: [chat]
+    defaultCompletionOptions:
+      contextLength: 128000
+      maxTokens: 32768
+    useLegacyCompletionsEndpoint: false
+
+  # ~$0.14 / $0.28 por M. 1M contexto. El caballo de batalla.
+  - name: "[3/5] DeepSeek · V4 Flash · PAGO minimo"
+    provider: openrouter
+    model: deepseek/deepseek-v4-flash
+    apiBase: https://openrouter.ai/api/v1
+    apiKey: sk-or-v1-TU_CLAVE
+    roles: [edit, apply, chat]
+    defaultCompletionOptions:
+      contextLength: 1000000
+      maxTokens: 16384
+    capabilities: [tool_use]
+
+  # Clave gratis en https://aistudio.google.com/apikey (sin tarjeta)
+  # Flash: 1.500 peticiones/día, 15 RPM, 1M tokens/minuto.
+  # AVISO: en el tier gratuito Google puede usar tus prompts para entrenar.
+  # No lo uses con código no publicado de la tesis.
+  - name: "[3/5] Google · Gemini 2.5 Flash · GRATIS (clave Google)"
+    provider: gemini
+    model: gemini-2.5-flash
+    apiKey: TU_CLAVE_DE_GOOGLE_AI_STUDIO
+    roles: [chat, edit, apply]
+    defaultCompletionOptions:
+      contextLength: 1000000
+      maxTokens: 32768
+    capabilities: [tool_use, image_input]
+
+  # (47) Gratis con visión: capturas de TensorBoard, diagramas, figuras de papers.
+  - name: "[3/5] Google · Gemma 4 31B IT (vision) · GRATIS"
+    provider: openrouter
+    model: google/gemma-4-31b-it:free
+    apiBase: https://openrouter.ai/api/v1
+    apiKey: sk-or-v1-TU_CLAVE
+    roles: [chat, edit]
+    defaultCompletionOptions:
+      contextLength: 262144
+      maxTokens: 8192
+    capabilities: [tool_use, image_input]
+
+  # $0.35 / $1.50 por M. Apache-2.0, 30B. Muy bueno en tool-calling (MCP Atlas).
+  # Interesante para ti: pesos abiertos, self-hosteable más adelante.
+  - name: "[3/5] Meta · Muse Glimmer 30B · PAGO minimo"
+    provider: openrouter
+    model: meta/muse-glimmer-30b
+    apiBase: https://openrouter.ai/api/v1
+    apiKey: sk-or-v1-TU_CLAVE
+    roles: [chat, edit, apply]
+    defaultCompletionOptions:
+      contextLength: 128000
+      maxTokens: 16384
+    capabilities: [tool_use]
+
+  # Sin puntuar aún, pero es el gratis grande de NVIDIA.
+  - name: "[3/5] NVIDIA · Nemotron 3 Super 120B · GRATIS"
+    provider: openrouter
+    model: nvidia/nemotron-3-super-120b-a12b:free
+    apiBase: https://openrouter.ai/api/v1
+    apiKey: sk-or-v1-TU_CLAVE
+    roles: [chat, edit, apply]
+    defaultCompletionOptions:
+      contextLength: 262144
+      maxTokens: 8192
+    capabilities: [tool_use]
+
+  # Clave gratis (nvapi-...) en https://build.nvidia.com, sin tarjeta.
+  # ~1.000 créditos/mes, ~40 peticiones/minuto, 100+ modelos abiertos.
+  # Endpoint compatible con OpenAI -> provider: openai + apiBase.
+  # IMPORTANTE: copia el ID exacto desde la ficha del modelo en build.nvidia.com
+  - name: "[3/5] NVIDIA · Nemotron Super 49B · GRATIS (clave NVIDIA)"
+    provider: openai
+    model: nvidia/llama-3.3-nemotron-super-49b-v1
+    apiBase: https://integrate.api.nvidia.com/v1
+    apiKey: nvapi-TU_CLAVE_DE_NVIDIA
+    roles: [chat, edit, apply]
+    defaultCompletionOptions:
+      contextLength: 128000
+      maxTokens: 16384
+    useLegacyCompletionsEndpoint: false
+
+  - name: "[3/5] Poolside · Laguna S 2.1 · GRATIS"
+    provider: openrouter
+    model: poolside/laguna-s-2.1:free
+    apiBase: https://openrouter.ai/api/v1
+    apiKey: sk-or-v1-TU_CLAVE
+    roles: [chat, edit, apply]
+    defaultCompletionOptions:
+      contextLength: 262144
+      maxTokens: 8192
+    capabilities: [tool_use]
+
+  # ==========================================================
+  # NOTA 2/5 — LIGERO
+  # Tareas cortas y baratas. Buenos para no gastar cuota de los de arriba.
+  # ==========================================================
+
+  # (32) Ligero y específico de código. Bueno para "apply".
+  - name: "[2/5] Cohere · North Mini Code · GRATIS"
+    provider: openrouter
+    model: cohere/north-mini-code:free
+    apiBase: https://openrouter.ai/api/v1
+    apiKey: sk-or-v1-TU_CLAVE
+    roles: [edit, apply]
+    defaultCompletionOptions:
+      contextLength: 256000
+      maxTokens: 8192
+    capabilities: [tool_use]
+
+  # 30 RPM: el más generoso en peticiones por minuto.
+  - name: "[2/5] Google · Gemini 2.5 Flash Lite · GRATIS (clave Google)"
+    provider: gemini
+    model: gemini-2.5-flash-lite
+    apiKey: TU_CLAVE_DE_GOOGLE_AI_STUDIO
+    roles: [chat, edit]
+    defaultCompletionOptions:
+      contextLength: 1000000
+      maxTokens: 16384
+    capabilities: [tool_use, image_input]
+
+  # (41) Hermano pequeño MoE del anterior, más rápido.
+  - name: "[2/5] Google · Gemma 4 26B A4B (vision) · GRATIS"
+    provider: openrouter
+    model: google/gemma-4-26b-a4b-it:free
+    apiBase: https://openrouter.ai/api/v1
+    apiKey: sk-or-v1-TU_CLAVE
+    roles: [chat, edit]
+    defaultCompletionOptions:
+      contextLength: 262144
+      maxTokens: 8192
+    capabilities: [tool_use, image_input]
+
+  - name: "[2/5] Meta · Llama 3.3 70B · GRATIS (clave NVIDIA)"
+    provider: openai
+    model: meta/llama-3.3-70b-instruct
+    apiBase: https://integrate.api.nvidia.com/v1
+    apiKey: nvapi-TU_CLAVE_DE_NVIDIA
+    roles: [chat, edit]
+    defaultCompletionOptions:
+      contextLength: 128000
+      maxTokens: 8192
+    useLegacyCompletionsEndpoint: false
+
+  # (23)
+  - name: "[2/5] NVIDIA · Nemotron 3 Nano 30B · GRATIS"
+    provider: openrouter
+    model: nvidia/nemotron-3-nano-30b-a3b:free
+    apiBase: https://openrouter.ai/api/v1
+    apiKey: sk-or-v1-TU_CLAVE
+    roles: [chat, edit]
+    defaultCompletionOptions:
+      contextLength: 256000
+      maxTokens: 8192
+    capabilities: [tool_use]
+
+  # Variante con razonamiento explícito + visión. Interesante para comparar
+  # cadenas de pensamiento en tus experimentos.
+  - name: "[2/5] NVIDIA · Nemotron 3 Nano Omni (razona) · GRATIS"
+    provider: openrouter
+    model: nvidia/nemotron-3-nano-omni-30b-a3b-reasoning:free
+    apiBase: https://openrouter.ai/api/v1
+    apiKey: sk-or-v1-TU_CLAVE
+    roles: [chat]
+    defaultCompletionOptions:
+      contextLength: 256000
+      maxTokens: 16384
+    capabilities: [tool_use, image_input]
+
+  # (37) 1M de contexto y muy rápido.
+  - name: "[2/5] NVIDIA · Nemotron 3.5 Lightning · GRATIS"
+    provider: openrouter
+    model: nvidia/nemotron-3.5-lightning:free
+    apiBase: https://openrouter.ai/api/v1
+    apiKey: sk-or-v1-TU_CLAVE
+    roles: [chat, edit]
+    defaultCompletionOptions:
+      contextLength: 1000000
+      maxTokens: 8192
+    capabilities: [tool_use]
+
+  # (24) Pesos abiertos de OpenAI. Rápido.
+  - name: "[2/5] OpenAI · GPT-OSS 20B · GRATIS"
+    provider: openrouter
+    model: openai/gpt-oss-20b:free
+    apiBase: https://openrouter.ai/api/v1
+    apiKey: sk-or-v1-TU_CLAVE
+    roles: [chat, edit]
+    defaultCompletionOptions:
+      contextLength: 131072
+      maxTokens: 8192
+    capabilities: [tool_use]
+
+  - name: "[2/5] Poolside · Laguna XS 2.1 · GRATIS"
+    provider: openrouter
+    model: poolside/laguna-xs-2.1:free
+    apiBase: https://openrouter.ai/api/v1
+    apiKey: sk-or-v1-TU_CLAVE
+    roles: [edit, apply]
+    defaultCompletionOptions:
+      contextLength: 262144
+      maxTokens: 8192
+    capabilities: [tool_use]
+
+  # ==========================================================
+  # NOTA 1/5 — MINIMO
+  # Autocompletado, pruebas, y medir el suelo de calidad.
+  # ==========================================================
+
+  - name: "[1/5] Alibaba · Qwen2.5 Coder 1.5B · LOCAL (autocompletado)"
+    provider: ollama
+    model: qwen2.5-coder:1.5b-base
+    roles: [autocomplete]
+
+  # El más pequeño del catálogo. Útil para ver dónde está el suelo de calidad.
+  - name: "[1/5] Liquid AI · LFM 2.5 2.6B · GRATIS"
+    provider: openrouter
+    model: liquid/lfm-2.5-2.6b:free
+    apiBase: https://openrouter.ai/api/v1
+    apiKey: sk-or-v1-TU_CLAVE
+    roles: [chat]
+    defaultCompletionOptions:
+      contextLength: 128000
+      maxTokens: 4096
+    capabilities: [tool_use]
+
+  # (14) Visión en formato mini.
+  - name: "[1/5] NVIDIA · Nemotron Nano 12B VL (vision) · GRATIS"
+    provider: openrouter
+    model: nvidia/nemotron-nano-12b-v2-vl:free
+    apiBase: https://openrouter.ai/api/v1
+    apiKey: sk-or-v1-TU_CLAVE
+    roles: [chat]
+    defaultCompletionOptions:
+      contextLength: 128000
+      maxTokens: 8192
+    capabilities: [tool_use, image_input]
+
+  # (14)
+  - name: "[1/5] NVIDIA · Nemotron Nano 9B v2 · GRATIS"
+    provider: openrouter
+    model: nvidia/nemotron-nano-9b-v2:free
+    apiBase: https://openrouter.ai/api/v1
+    apiKey: sk-or-v1-TU_CLAVE
+    roles: [chat]
+    defaultCompletionOptions:
+      contextLength: 128000
+      maxTokens: 8192
+    capabilities: [tool_use]
+
+  # ==========================================================
+  # NOTA ?/5 — VARIABLE
+  # Auto-router y modelos propios: la potencia depende de lo que haya detras.
+  # ==========================================================
+
+  - name: "[?/5] Antonio · Modelo propio · LOCAL"
+    provider: openai
+    model: mi-modelo-v1
+    apiBase: http://127.0.0.1:8000/v1
+    apiKey: no-importa          # el cliente lo exige, tu servidor lo ignora
+    roles: [chat]
+    defaultCompletionOptions:
+      contextLength: 4096
+      maxTokens: 512
+    useLegacyCompletionsEndpoint: false
+
+  - name: "[?/5] OpenRouter · Auto Free Router · GRATIS"
+    provider: openrouter
+    model: openrouter/free
+    apiBase: https://openrouter.ai/api/v1
+    apiKey: sk-or-v1-TU_CLAVE
+    roles: [chat, edit]
+    defaultCompletionOptions:
+      contextLength: 200000
+      maxTokens: 8192
+    capabilities: [tool_use, image_input]
+
+  # ==========================================================
+  # NOTA SOBRE OPENAI: no existe tier gratuito de la API de OpenAI.
+  # Lo mas parecido son sus pesos abiertos gpt-oss, ya incluidos arriba
+  # como [2/5] OpenAI · GPT-OSS 20B (via OpenRouter y tambien en NVIDIA NIM).
+  # ==========================================================
+
+  # ==========================================================
+  # OPCIONALES — descomenta y VERIFICA el slug en openrouter.ai/models
+  # ==========================================================
+
+  # MiniMax M3 (~$0.30/$1.20, promo) — frontera abierta muy barata
+  # - name: "[4/5] MiniMax · M3 · PAGO barato"
+  #   provider: openrouter
+  #   model: minimax/minimax-m3
+  #   apiBase: https://openrouter.ai/api/v1
+  #   apiKey: sk-or-v1-TU_CLAVE
+  #   roles: [chat, edit]
+
+  # Kimi K2.7 Code (~$0.95/$4.00) — muy bueno en coding agéntico
+  # - name: "[4/5] Moonshot · Kimi K2.7 Code · PAGO"
+  #   provider: openrouter
+  #   model: moonshotai/kimi-k2.7-code
+  #   apiBase: https://openrouter.ai/api/v1
+  #   apiKey: sk-or-v1-TU_CLAVE
+  #   roles: [chat, edit]
+
+  # GPT-5.1 ($1.25/$10) si prefieres ecosistema OpenAI
+  # - name: "[5/5] OpenAI · GPT-5.1 · PAGO"
+  #   provider: openrouter
+  #   model: openai/gpt-5.1
+  #   apiBase: https://openrouter.ai/api/v1
+  #   apiKey: sk-or-v1-TU_CLAVE
+  #   roles: [chat, edit, apply]
+
+context:
+  - provider: code
+  - provider: docs
+  - provider: diff
+  - provider: terminal
+  - provider: problems
+  - provider: folder
+  - provider: codebase
