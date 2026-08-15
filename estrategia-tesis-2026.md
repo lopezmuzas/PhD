@@ -989,3 +989,107 @@ Lo que hay que cerrar antes del 31 de agosto:
 > abierto que nadie ha conectado con ellas (evaluación en RL offline).
 >
 > Eso es suficiente. Lo que falta es elegir y empezar a medir.
+
+# Parte B-quater — SSL tipo JEPA sobre espacios de datos federados
+
+> **Estado: hipótesis anotada, no línea abierta.** Esta parte existe para cerrar
+> el tema, no para abrirlo. Revisar **después** de los resultados de Epoch 1.
+
+## El planteamiento
+
+LeCun (AMI Labs, 2026) apuesta por aprendizaje autosupervisado **no generativo**:
+predecir en el espacio de representación en lugar de reconstruir la entrada.
+JEPA es la arquitectura; **LeJEPA / SIGReg** (Balestriero & LeCun, 2025,
+[arXiv:2511.08544](https://arxiv.org/abs/2511.08544)) es la versión que sustituye
+las heurísticas anti-colapso por un regularizador con garantías: forzar
+embeddings gaussianos isotrópicos.
+
+Conviene separar dos cosas que en su discurso van juntas y aquí no:
+
+- **JEPA como objetivo SSL** → transferible a este contexto.
+- **World models para planificación con acciones** → solo aplica si hay
+  trayectorias, no datasets estáticos (ver más abajo).
+
+## Por qué encaja con C2D
+
+**Elimina el problema de las etiquetas.** El cuello de botella de un data space
+no son los datos, es que cada proveedor anota con su ontología y su taxonomía.
+Armonizar etiquetas entre sitios es un problema organizativo que no se resuelve
+con código. Un objetivo autosupervisado elimina la premisa: convierte "muchos
+datos heterogéneos sin etiquetar repartidos" de problema en sustrato.
+
+**El artefacto exportado es un encoder, no un generador.** Argumento
+**estructural** de privacidad, no de gobernanza: un modelo generativo se entrena
+explícitamente para reconstruir sus entradas — de ahí la superficie de ataques de
+extracción y de inferencia de pertenencia. Un JEPA nunca aprende a reconstruir
+nada. Frente a un DPO o un comité de ética, "el modelo no puede reproducir
+vuestros datos porque no se le entrenó para reconstruir" lo hace la arquitectura,
+no el compliance.
+
+*Matiz obligatorio:* reduce la superficie, no la anula. Los embeddings son
+parcialmente invertibles y los gradientes siguen filtrando (*deep leakage from
+gradients*). Es un argumento de grado.
+
+**El encoder es un activo del data space.** En Ocean/Pontus-X lo que se monetiza
+son assets. Un encoder entrenado federadamente sobre N proveedores es un activo
+derivado, con procedencia trazable, que ningún proveedor podría haber producido
+en solitario. La arquitectura técnica y la económica apuntan al mismo sitio.
+
+## Dónde se rompe
+
+**El cómputo — este es el muro real.** El SSL joint-embedding es caro: batches
+grandes, muchas épocas, augmentación pesada. LeJEPA reporta ViT-H/14 sobre
+ImageNet-1K. Un nodo C2D es modesto, el job está acotado en tiempo y se factura.
+Entrenar un JEPA desde cero a través de rondas federadas dentro de C2D **no es
+viable hoy**. El patrón realista es preentrenar centralmente en datos públicos y
+**adaptar** federadamente — afirmación mucho más pequeña, pero es la honesta.
+
+**Entrenar a ciegas, al cuadrado.** El colapso de representaciones es silencioso:
+la loss baja mientras el modelo mapea todo al mismo punto. Bajo C2D no puedes
+mirar los embeddings ni los vecinos más cercanos.
+
+*Mitigación concreta:* SIGReg **es un test estadístico**, o sea que produce un
+número. Exportar como métricas del job el estadístico por sitio, el rango
+efectivo de la covarianza de embeddings y la dimensionalidad efectiva. Eso da
+instrumentación que cruza la frontera de confianza.
+
+**La parte "world model" no viaja** a datasets estáticos: no hay trayectorias
+condicionadas por acciones ni política controlable.
+
+## La hipótesis que sí es medible
+
+Los objetivos SSL se dividen en dos familias según de qué depende su
+regularizador:
+
+| Familia | Depende de | Predicción bajo no-IID |
+|---|---|---|
+| Contrastivos (SimCLR, MoCo) | **negativos globales** dentro del batch | degrada rápido: el batch local no representa el espacio |
+| Prior-matching (VICReg, SIGReg) | un **objetivo fijo a priori** | degrada menos: todos los sitios empujan al mismo objetivo |
+
+**H:** bajo partición no-IID, un objetivo prior-matching degrada más lentamente
+que uno contrastivo, porque el objetivo no se estima a partir de datos locales.
+
+Se mide **con el experimento que ya está planificado**: misma curva Dirichlet
+(barrido de α), dos objetivos SSL, uno de cada familia. Es una columna extra en
+Epoch 1, no una línea nueva.
+
+## Donde sí tiene sentido la palabra *world model*
+
+Un dataset de **RL offline** sí son trayectorias `(s, a, r, s′)`. Un modelo de
+dinámica latente estilo JEPA sobre logs multi-sitio, con selección de política
+**leave-one-site-out** en espacio latente (→ Parte B-ter, sección 14), es el
+punto donde federated learning + offline RL + JEPA dejan de ser tres intereses
+paralelos y pasan a ser una sola pregunta. Literatura de apoyo: Dreamer, TD-MPC,
+model-based offline RL.
+
+## Tareas
+
+- [ ] Añadir el eje "objetivo SSL" a la curva Dirichlet de Epoch 1, **solo si
+      sale gratis**.
+- [ ] Leer dos cosas y parar: LeJEPA (2511.08544) y una revisión de model-based
+      offline RL. **Time-box: 3 h.** No abrir el árbol de citas.
+- [ ] Revisar esta parte después de Epoch 1, no antes.
+
+**Disciplina.** La prioridad hasta septiembre son los tres experimentos de
+Epoch 1. Llegar a la reunión con tutores con una gráfica y una hipótesis derivada
+de ella es una conversación distinta a llegar con una sección nueva.
