@@ -345,12 +345,12 @@ Los específicos van en cada sección. Estos cubren el mapa completo:
 - [x] §4.6 ★ — Spinning Up, Sutton & Barto, CS285 (→ 1.6)
 - [x] §4.8 — Llama 3 report, DeepSeek-R1, alignment-handbook
 - [x] §4.9 — visual guides, papers de test-time compute, open-r1
-- [ ] §4.1 — dataset clásico + arquitectura asociada
-- [ ] §4.2 — material sobre clustering y reducción de dimensionalidad
-- [ ] §4.3 — paper fundacional de la tarea pretexto elegida
-- [ ] §4.4 — material sobre *distribution shift* y composición de errores
-- [ ] §4.5 — paper de RLHF (InstructGPT) y paper de DPO
-- [ ] §4.7 — paper original de destilación (Hinton et al. 2015)
+- [x] §4.1 — 3b1b, TF Playground, labelerrors.com, Teachable Machine
+- [x] §4.2 — Setosa, Distill *Misread t-SNE*, PAIR *Understanding UMAP*
+- [x] §4.3 — Lilian Weng, nanoGPT, Cookbook of SSL, Toolformer
+- [x] §4.4 — CS285 clase 2, DAgger, LIMA, datasets de SFT
+- [x] §4.5 — RLHF Book, InstructGPT, DPO, *Reward Model Overoptimization*
+- [x] §4.7 — Hinton 2015, DistilBERT, colapso por datos sintéticos (Nature 2024)
 
-**Nota:** cuando incorpores citas concretas, verifica cada referencia en su fuente
-original antes de fijarla en el documento.
+**Nota:** las referencias están verificadas y enlazadas. Revísalas de todos modos antes
+de citarlas en la tesis: los enlaces se mueven y los recursos envejecen.
