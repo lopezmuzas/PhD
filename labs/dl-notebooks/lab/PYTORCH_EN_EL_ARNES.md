@@ -128,10 +128,21 @@ components.optimizer.step()
 
 ### ⑦ Semillas y Reproducibilidad (`set_seed`)
 
-* **`torch.manual_seed(seed)`** y **`torch.cuda.manual_seed_all(seed)`**:
-  * Inicializan los generadores pseudo-aleatorios de PyTorch (para inicialización de pesos, mezclas aleatorias en DataLoaders, etc.), garantizando que dos ejecuciones con la misma semilla comiencen exactamente igual.
+Una red neuronal usa números aleatorios en múltiples momentos críticos:
+1. **Pesos iniciales:** Al crear una capa (`nn.Linear`, `nn.Conv2d`), sus pesos $W$ y sesgos $b$ se rellenan con valores aleatorios.
+2. **Barajado de datos:** `DataLoader(..., shuffle=True)` reordena los ejemplos aleatoriamente al inicio de cada época.
+3. **Capas estocásticas:** `nn.Dropout` apaga un porcentaje aleatorio de neuronas en cada pase.
+
+La **semilla (`seed`)** es el número inicial que fija el punto de partida de estos generadores pseudoaleatorios:
+
+* **`torch.manual_seed(seed)`**:
+  * Fija el generador aleatorio de PyTorch para operaciones en CPU.
+* **`torch.cuda.manual_seed_all(seed)`**:
+  * Fija el generador aleatorio para todas las GPUs disponibles.
 * **`torch.backends.cudnn.deterministic = True`**:
-  * Fuerza a las rutinas internas de convoluciones y álgebra de NVIDIA a usar algoritmos deterministas.
+  * Fuerza a los algoritmos de bajo nivel de NVIDIA (cuDNN) a usar implementaciones deterministas, evitando pequeñas variaciones numéricas por paralelismo.
+
+> **¿Qué implica fijar la semilla?** Permite que si repites el entrenamiento hoy y mañana con `seed=42`, la red empiece con los mismos pesos y procese los datos en el mismo orden, garantizando **reproducibilidad exacta** y permitiendo aislar el efecto de cualquier cambio de hiperparámetros.
 
 ---
 

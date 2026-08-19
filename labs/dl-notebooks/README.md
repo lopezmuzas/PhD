@@ -23,7 +23,7 @@ dl-notebooks/
 ├── lab/              código reutilizable, importado por los notebooks
 │   ├── harness.py    el arnés de experimentos (N00)
 │   └── data.py       los generadores sintéticos (N01)
-├── notebooks/        N00 … N30
+├── notebooks/        N00 … N30 (+ 00-ciclo-basico-pytorch-puro.ipynb)
 ├── tests/            que el arnés no se rompa sin avisar
 └── runs/             resultados (ignorado por git)
 ```

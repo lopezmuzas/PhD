@@ -145,13 +145,28 @@ model = models.build("mlp", hidden_size=32)
 
 ---
 
-### 🎲 Reproducibilidad y Utilidades
+### 🎲 Reproducibilidad y Semillas (`seed`)
+
+En informática el azar real no existe: se utilizan **generadores de números pseudoaleatorios** basados en fórmulas matemáticas deterministas. La **semilla (`seed`)** es el número inicial que alimenta esas fórmulas. A misma semilla, la secuencia de números generados es **100 % idéntica**.
+
+#### ¿Qué decide la semilla durante el entrenamiento?
+1. **Inicialización de pesos ($W, b$):** Decide en qué punto exacto del espacio de parámetros arranca la red.
+2. **Barajado de datos (*Data Shuffling*):** Decide en qué orden se entregan los lotes (*batches*) en cada época dentro del `DataLoader`.
+3. **División de datos (*Train/Val Split*):** Decide qué ejemplos específicos caen en entrenamiento y cuáles en validación.
+4. **Técnicas estocásticas:** Decide qué neuronas se apagan en `Dropout` o qué transformaciones se aplican en `Data Augmentation`.
 
 #### `set_seed(seed: int, deterministic: bool = True) -> None`
-Fija las semillas de `random`, `numpy`, `torch` y `torch.cuda`. Si `deterministic=True`, activa el backend determinista de cuDNN.
+Sincroniza todos los generadores aleatorios a la vez:
+* `random.seed(seed)` (Python estándar)
+* `np.random.seed(seed)` (NumPy)
+* `torch.manual_seed(seed)` (PyTorch CPU)
+* `torch.cuda.manual_seed_all(seed)` (PyTorch GPU / CUDA)
+* `torch.backends.cudnn.deterministic = True` (Fuerza operaciones de álgebra deterministas en GPU).
+
+> ⚠️ **El concepto de "Ruido de Fondo":** Cambiar solo la semilla de `0` a `1` produce resultados ligeramente distintos (dispersión natural). Antes de concluir que una nueva técnica funciona, debes verificar con `H.repeat_with_seeds()` que la mejora obtenida es significativamente mayor que la dispersión natural entre semillas ($> 2\sigma$).
 
 #### `current_git_commit() -> str`
-Obtiene el hash corto de Git del commit actual para asegurar la trazabilidad del código.
+Obtiene el hash corto de Git del commit actual para asegurar la trazabilidad del código en `meta.json`.
 
 ---
 
