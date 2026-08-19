@@ -52,7 +52,9 @@ sys.path.insert(0, str(Path.cwd()))
 
 ## La API del arnés
 
-> 📖 **Guía completa y referencia de API:** Consulta [`lab/HARNESS.md`](lab/HARNESS.md) para el desglose detallado de todos los métodos, estructuras de datos y persistencia en disco.
+> 📖 **Documentación:**
+> - [`lab/HARNESS.md`](lab/HARNESS.md): Referencia de la API del arnés, estructura del config, salidas y persistencia.
+> - [`lab/PYTORCH_EN_EL_ARNES.md`](lab/PYTORCH_EN_EL_ARNES.md): Manual de usuario de las funciones de PyTorch utilizadas internamente por el arnés.
 
 ```python
 from lab import harness as H

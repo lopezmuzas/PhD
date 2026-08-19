@@ -1,7 +1,8 @@
 # 🛠️ Documentación de la API: `lab/harness.py`
 
 > **Propósito:** El arnés de experimentos (*Experiment Harness*) estandariza la ejecución, persistencia, trazabilidad y comparación de modelos.  
-> **Regla de diseño:** *Todo lo que **cambia** entre experimentos vive en el `config`. Todo lo que **no cambia** vive en el arnés.*
+> **Regla de diseño:** *Todo lo que **cambia** entre experimentos vive en el `config`. Todo lo que **no cambia** vive en el arnés.*  
+> 📘 *Ver también:* [`PYTORCH_EN_EL_ARNES.md`](PYTORCH_EN_EL_ARNES.md) (manual de las funciones internas de PyTorch empleadas en el arnés).
 
 ---
 
