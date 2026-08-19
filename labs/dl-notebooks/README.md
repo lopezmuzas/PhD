@@ -52,6 +52,8 @@ sys.path.insert(0, str(Path.cwd()))
 
 ## La API del arnés
 
+> 📖 **Guía completa y referencia de API:** Consulta [`lab/HARNESS.md`](lab/HARNESS.md) para el desglose detallado de todos los métodos, estructuras de datos y persistencia en disco.
+
 ```python
 from lab import harness as H
 
