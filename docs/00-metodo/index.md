@@ -21,7 +21,7 @@ pierde por perder el hilo.
         ┌──────────────────────────────────────────────┐
         │                                              │
         ▼                                              │
-   PRIMEROS PASOS ──────▶ qué hacer ahora              │
+   NOTEBOOKS N00→N30 ───▶ qué construyo ahora              │
         │                                              │
         ▼                                              │
    BITÁCORA ────────────▶ qué salió, y qué me sorprendió
@@ -37,7 +37,8 @@ este ciclo.
 
 | Documento | Responde a | Cuándo se toca |
 |---|---|---|
-| [Primeros pasos](primeros-pasos.md) | ¿Qué hago ahora? | Al empezar, y cuando no sepas por dónde seguir |
+| [Itinerario](itinerario.md) | ¿Por qué esto y en qué orden? | Una vez, al empezar |
+| [Lista de notebooks](../04-proyecto/09-indice-notebooks/notebooks.md) | ¿Qué construyo ahora? | Cada sesión |
 | [La bitácora](bitacora-el-sistema.md) | ¿Qué probé y qué salió? | Cada sesión |
 | [Anexo A](../05-anexos/anexo-a-preguntas-abiertas.md) | ¿Qué no sabemos? | Cada vez que aparece una pregunta, y al revisar el mes |
 
@@ -47,14 +48,16 @@ este ciclo.
 
 ```none
 docs/
-├── 00-metodo/                      ← estás aquí. El SISTEMA
-│   ├── primeros-pasos.md
-│   └── bitacora-el-sistema.md
+├── 00-metodo/                          ← se LEE
+│   ├── itinerario.md                   principios, dataset, mapa
+│   └── bitacora-el-sistema.md          el sistema de registro
 │
 ├── 01-fundamentos/ … 03-data-spaces/   ← lo que se estudia
 │
 ├── 04-proyecto/
-│   └── 10-bitacora-experimentos/   ← las ENTRADAS de la bitácora
+│   ├── 09-indice-notebooks/
+│   │   └── notebooks.md                ← se RECORRE (N00 → N30)
+│   └── 10-bitacora-experimentos/       ← se ESCRIBE
 │       ├── INDICE.md
 │       ├── _plantilla.md
 │       └── 2026-08/ …
@@ -62,6 +65,9 @@ docs/
 └── 05-anexos/
     └── anexo-a-preguntas-abiertas.md
 ```
+
+**Tres modos de uso, no tres temas.** El itinerario se **lee** una vez; la lista de
+notebooks se **recorre** del N00 al N30; la bitácora se **escribe** cada sesión.
 
 **La distinción que importa:** aquí está el *sistema* de bitácora; las *entradas* viven
 en el proyecto, con los experimentos que documentan.
@@ -104,10 +110,10 @@ hace los fallos más caros de depurar.
 
 Si es tu primer día con este sistema, dos horas:
 
-1. Leer [Primeros pasos](primeros-pasos.md), fases 0 y 1.
+1. Leer el [Itinerario](itinerario.md), partes I y II.
 2. Copiar `_plantilla.md` a `2026-XX/` y escribir la primera entrada.
-3. Hacer los dos primeros experimentos: predecir antes de entrenar, y sobreajustar
-   diez muestras.
+3. Abrir la [lista de notebooks](../04-proyecto/09-indice-notebooks/notebooks.md) por
+   **N00**, copiar preámbulo + bloque, y montar el arnés.
 4. Cerrar la entrada con el siguiente paso.
 
 **Lo que cuesta arrancar no son los experimentos: es el hábito.** Se coge con lo
