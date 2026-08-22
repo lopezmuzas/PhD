@@ -24,10 +24,24 @@ dl-notebooks/
 │   ├── harness.py    el arnés de experimentos (N00)
 │   ├── harness_rl.py el arnés de refuerzo: REINFORCE mínimo (02)
 │   └── data.py       los generadores sintéticos (N01)
-├── notebooks/        N00 … N30 (+ 00-ciclo-basico-pytorch-puro.ipynb)
+├── notebooks/        N00 … N30 (+ los 00-/01-/02-/03- introductorios)
 ├── tests/            que el arnés no se rompa sin avisar
 └── runs/             resultados (ignorado por git)
 ```
+
+## Los notebooks de aprendizaje por refuerzo
+
+Se leen en este orden, y el segundo no supone el primero:
+
+| Notebook | Qué enseña | Para quién |
+|---|---|---|
+| `03-el-raton-y-el-laberinto.ipynb` | RL como un juego: un ratón busca queso en un laberinto | **Cualquiera.** Sin matemáticas |
+| `03-el-raton-y-el-laberinto-EXPLICADO.md` | El mismo notebook **línea a línea**: cada instrucción de Python, PyTorch y matplotlib | Quien esté aprendiendo a programarlo |
+| `02-refuerzo-con-el-arnes-rl.ipynb` | El mecanismo: por qué el gradiente de política *es* entropía cruzada ponderada | Quien quiera el detalle técnico |
+| `01-aprendizaje-multi-etapa-arnes.ipynb` | Cómo esto alinea modelos de lenguaje (RLHF) | Continuación natural |
+
+Si vas a empezar por algún sitio, empieza por el del ratón (`03-`). Es el más fácil y el
+que deja las intuiciones colocadas para los otros dos.
 
 ## Convenios
 

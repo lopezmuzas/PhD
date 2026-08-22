@@ -377,7 +377,14 @@ Trae dos entornos de juguete, cada uno aislando **una** idea:
   cobra. Demuestra que gamma no es un detalle de implementación sino parte de la
   definición del problema.
 
-📓 **Notebook de acompañamiento:** `notebooks/02-refuerzo-con-el-arnes-rl.ipynb` recorre
+📓 **Notebooks de acompañamiento.** `notebooks/03-el-raton-y-el-laberinto.ipynb` es la
+puerta de entrada divulgativa: un ratón busca queso en un laberinto 5×5, se dibuja la
+política aprendida como un campo de flechas, y se ven en vivo la memorización (mover el
+queso rompe al ratón), el castigo (aparece un gato y las flechas se dan la vuelta) y el
+carácter *on-policy* (la única casilla cuya flecha apunta a un muro es la única que el ratón
+nunca pisa). Sin matemáticas.
+
+`notebooks/02-refuerzo-con-el-arnes-rl.ipynb` es el mecanismo: recorre
 todo esto con números: verifica que `F.cross_entropy` *es* $-\log \pi$, abre un rollout por
 dentro, muestra el giro de `gamma`, el abanico de las 5 semillas, y cierra con *reward
 hacking* en vivo sobre un juez de juguete.
