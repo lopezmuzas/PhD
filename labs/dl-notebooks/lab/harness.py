@@ -333,8 +333,12 @@ def compare_runs(run_ids: list[str], metric: str = "val_loss") -> pd.DataFrame:
         flat_config = {k: v for k, v in run["config"].items() if not isinstance(v, dict)}
         rows.append({
             "run_id": run_id,
-            "seed": run["meta"]["seed"],
             **flat_config,
+            # ES: DESPUÉS de flat_config a propósito. El config trae una clave
+            # "seed" (la de por defecto) y meta trae la que se usó de verdad.
+            # Si esta línea va antes, el config la pisa y comparar N semillas
+            # devuelve N filas que dicen todas la misma. Manda meta.
+            "seed": run["meta"]["seed"],
             "final": run["history"][metric].iloc[-1],
             "best": run["history"][metric].min(),
             "seconds": run["meta"]["elapsed_seconds"],

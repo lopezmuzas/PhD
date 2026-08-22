@@ -576,16 +576,12 @@ def compare_rl_runs(run_ids: list[str], metric: str = "reward_mean"):
     en RL no es una pérdida, y la pérdida de política puede SUBIR mientras el
     agente mejora (al reducirse la varianza de los pesos). No mires la loss aquí.
     """
+    # ES: Solo hay que corregir `best`. La columna "seed" venía mal (el config
+    # pisaba la semilla real de meta.json), pero eso se arregló en el propio
+    # `H.compare_runs`, que es donde estaba el fallo: afectaba igual a
+    # `H.repeat_with_seeds`. Aquí no se duplica el arreglo.
     table = H.compare_runs(run_ids, metric)
     table["best"] = [H.load_run(rid)["history"][metric].max() for rid in run_ids]
-
-    # ES: Corrección de un fallo heredado de `H.compare_runs`: allí la columna
-    # "seed" se rellena con `meta["seed"]` (la semilla REAL usada) pero acto
-    # seguido se hace `**flat_config`, y si el config trae una clave "seed" la
-    # pisa. Resultado: al comparar 5 semillas, la tabla dice que todas son la 0.
-    # El `run_id` sí lleva la buena, así que el dato no se pierde, solo se
-    # muestra mal. Afecta igual a `H.repeat_with_seeds`.
-    table["seed"] = [H.load_run(rid)["meta"]["seed"] for rid in run_ids]
     return table
 
 

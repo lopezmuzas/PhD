@@ -251,6 +251,14 @@ Devuelve la lista ordenada de `run_id`s guardados en la carpeta `runs/` que coin
 #### `compare_runs(run_ids: list[str], metric: str = "val_loss") -> pd.DataFrame`
 Genera una tabla comparativa en Pandas donde cada fila es un run con su configuración aplanada, métrica final, métrica óptima (`best`) y duración.
 
+> ⚠️ `best` se calcula con el **mínimo**, porque en aprendizaje supervisado menos pérdida es
+> mejor. Con métricas donde *más* es mejor (recompensa, precisión) devuelve el peor valor
+> etiquetado como `best`, **sin dar error**. Para refuerzo, usa `harness_rl.compare_rl_runs()`.
+>
+> La columna `seed` se rellena con la de `meta.json` (la que se usó de verdad) y se coloca
+> **después** de la configuración aplanada a propósito: si el `config` trae una clave `seed`,
+> no debe pisarla. Hay un test de regresión para esto en `tests/test_harness.py`.
+
 #### `plot_runs(run_ids: list[str], metrics=("train_loss", "val_loss"), log_scale=True, ax=None)`
 Dibuja las curvas de aprendizaje superpuestas de múltiples ejecuciones para comparar su convergencia.
 
@@ -368,6 +376,11 @@ Trae dos entornos de juguete, cada uno aislando **una** idea:
   Cambiando **solo `gamma`** se invierte la política óptima: con `0.99` aguanta, con `0.6`
   cobra. Demuestra que gamma no es un detalle de implementación sino parte de la
   definición del problema.
+
+📓 **Notebook de acompañamiento:** `notebooks/02-refuerzo-con-el-arnes-rl.ipynb` recorre
+todo esto con números: verifica que `F.cross_entropy` *es* $-\log \pi$, abre un rollout por
+dentro, muestra el giro de `gamma`, el abanico de las 5 semillas, y cierra con *reward
+hacking* en vivo sobre un juez de juguete.
 
 El entorno interesante —LM que genera, clasificador que puntúa— **no está en el módulo a
 propósito**: depende del vocabulario y del checkpoint de un notebook concreto, así que se

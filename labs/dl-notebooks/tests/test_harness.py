@@ -102,3 +102,21 @@ def test_callbacks_are_called():
 def test_unknown_component_fails_loudly():
     with pytest.raises(KeyError, match="unknown model"):
         H.run_experiment(dict(CONFIG, model="does-not-exist"), save=False, verbose=False)
+
+
+def test_compare_runs_reports_the_seed_actually_used(tmp_path, monkeypatch):
+    """The config's own 'seed' key must not shadow the real seed from meta.json.
+
+    ES: Regresión. `compare_runs` construía la fila con "seed" ANTES de
+    `**flat_config`, así que un config con clave "seed" la pisaba: comparar 5
+    semillas devolvía 5 filas diciendo todas la misma. Rompía `repeat_with_seeds`,
+    que es justo la herramienta para medir el umbral de credibilidad.
+    """
+    monkeypatch.setattr(H, "RUNS_DIR", tmp_path)
+    config = dict(CONFIG, seed=0)  # ES: la clave "seed" en el config es la trampa
+
+    run_ids = [H.run_experiment(config, seed=seed, verbose=False).run_id
+               for seed in (0, 1, 2)]
+
+    table = H.compare_runs(run_ids)
+    assert list(table["seed"]) == [0, 1, 2]

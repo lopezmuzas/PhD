@@ -22,6 +22,7 @@ make lab       # abre jupyter
 dl-notebooks/
 ├── lab/              código reutilizable, importado por los notebooks
 │   ├── harness.py    el arnés de experimentos (N00)
+│   ├── harness_rl.py el arnés de refuerzo: REINFORCE mínimo (02)
 │   └── data.py       los generadores sintéticos (N01)
 ├── notebooks/        N00 … N30 (+ 00-ciclo-basico-pytorch-puro.ipynb)
 ├── tests/            que el arnés no se rompa sin avisar
