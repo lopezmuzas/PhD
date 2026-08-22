@@ -53,6 +53,22 @@ base_config = {
 | `seed` | `int` | No | Semilla aleatoria (Default: `0` si no se especifica en la llamada). |
 | `device` | `str` | No | Dispositivo de cómputo (`"cpu"`, `"cuda"`). Auto-detectado si no se indica. |
 
+### 💡 Funciones de Pérdida Disponibles (`loss`)
+
+El campo `"loss"` en el `config` acepta cualquier nombre de función matemática de pérdida disponible en el módulo [`torch.nn.functional`](https://pytorch.org/docs/stable/nn.functional.html) de PyTorch (que es resuelta dinámicamente usando `getattr`). 
+
+Aquí tienes las más utilizadas en la práctica y sus casos de uso recomendados:
+
+| Valor en `"loss"` | Función de PyTorch | Tipo de Tarea | Descripción / Requisito del modelo |
+|---|---|---|---|
+| `"mse_loss"` (Default) | `F.mse_loss` | Regresión | Error Cuadrático Medio ($L_2$). Penaliza con fuerza los errores grandes. |
+| `"l1_loss"` | `F.l1_loss` | Regresión | Error Absoluto Medio ($L_1$). Más robusto ante valores atípicos (*outliers*). |
+| `"huber_loss"` | `F.huber_loss` | Regresión | Transición suave entre MSE (para errores pequeños) y L1 (para errores grandes). |
+| `"cross_entropy"` | `F.cross_entropy` | Clasificación Multiclase | Entropía cruzada. **Espera recibir logits** (salidas sin activar) y etiquetas de clase como enteros ($0, 1, 2, ...$). |
+| `"binary_cross_entropy_with_logits"` | `F.binary_cross_entropy_with_logits` | Clasificación Binaria | Entropía cruzada binaria numéricamente estable. **Espera recibir logits** (sin activación final). |
+| `"binary_cross_entropy"` | `F.binary_cross_entropy` | Clasificación Binaria | Entropía cruzada binaria estándar. **Requiere** que el modelo termine en una capa de activación `Sigmoid`. |
+| `"nll_loss"` | `F.nll_loss` | Clasificación Multiclase | Pérdida de verosimilitud logarítmica negativa. **Requiere** que el modelo termine en una activación `LogSoftmax`. |
+
 ---
 
 ## 2. Salida y Resultados de un Experimento

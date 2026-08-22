@@ -292,6 +292,29 @@ La **semilla (`seed`)** es el número inicial que fija el punto de partida de es
 
 ---
 
+### ⑧ Relación entre la última capa de activación y la pérdida (Y cómo lo gestiona el arnés)
+
+La última capa de la red neuronal refleja directamente el objetivo físico o matemático que se desea predecir. Por tanto, la función de activación de salida y la función de pérdida están fuertemente vinculadas.
+
+#### ¿Cómo lo gestiona `harness.py`?
+En el arnés, **el modelo no define la pérdida de forma rígida**. El arnés resuelve dinámicamente la función de pérdida basándose en la clave `"loss"` del diccionario de configuración (config), buscándola en `torch.nn.functional` mediante `getattr` (línea 178 de [`harness.py`](file:///Users/lopezmuzas/Developer/PhD/labs/dl-notebooks/lab/harness.py#L178)):
+```python
+loss_fn = getattr(torch.nn.functional, config.get("loss", DEFAULT_LOSS))
+```
+Por lo tanto, la arquitectura de tu red (registrada en `@models.register`) debe estar alineada con la función de pérdida que indiques en el config. Por ejemplo, en clasificación, la red debe escupir *logits* (sin activación final) porque la entropía cruzada de PyTorch aplica el Softmax internamente.
+
+#### Tabla de correspondencias según el objetivo de la red
+
+| Objetivo / Tipo de Tarea | Rango Deseado | Última Activación en el Modelo | Pérdida en Config (en `harness.py`) | Función interna de PyTorch |
+|---|---|---|---|---|
+| **Regresión libre** (ej: temperatura, seno) | $(-\infty, +\infty)$ | **Ninguna** (Lineal) | `"mse_loss"` o `"l1_loss"` | `F.mse_loss` / `F.l1_loss` |
+| **Regresión acotada positiva** (ej: distancias, precios > 0) | $[0, +\infty)$ | **ReLU** o **Softplus** | `"mse_loss"` | `F.mse_loss` |
+| **Regresión acotada en rango** (ej: porcentajes) | $[0, 1]$ o $[-1, 1]$ | **Sigmoid** o **Tanh** | `"mse_loss"` o `"binary_cross_entropy"` | `F.mse_loss` / `F.binary_cross_entropy` |
+| **Clasificación Binaria** (ej: Spam / No Spam) | Probabilidad $0$ a $1$ | **Ninguna** (Lineal / Logits) | `"binary_cross_entropy_with_logits"` | `F.binary_cross_entropy_with_logits` |
+| **Clasificación Multiclase** (ej: Gato / Perro / Pájaro) | Probabilidades que suman $1$ | **Ninguna** (Lineal / Logits) | `"cross_entropy"` | `F.cross_entropy` |
+
+---
+
 ## 3. Resumen de funciones clave en una sola tabla
 
 | Función en `harness.py` | ¿Para qué sirve? |
