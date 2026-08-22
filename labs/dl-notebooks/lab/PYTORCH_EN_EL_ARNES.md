@@ -209,8 +209,143 @@ class FullClassifier(nn.Module):
 ### ② Carga de Datos (`torch.utils.data.DataLoader`)
 
 * **`DataLoader`**:
-  * **Qué hace:** Envuelve un conjunto de datos y los agrupa en pequeños lotes (*batches* o minilotes).
+  * **Qué hace:** Envuelve un conjunto de datos (`Dataset`) y los agrupa en pequeños lotes (*batches* o minilotes), gestionando el barajado (*shuffling*), el orden y la carga paralela con múltiples hilos (`num_workers`).
   * **En el arnés:** En cada iteración del bucle `for inputs, targets in components.train_loader:`, el `DataLoader` entrega tensores con las entradas $X$ y las dianas esperadas $y$.
+
+#### 🧭 ¿Cómo sabe la red "contra qué predecir"? Los 4 Paradigmas en PyTorch
+
+La red neuronal es ciega: no sabe qué representan los números ni de dónde sale la verdad fundamental. **Quien define la diana ($y$) es el diseño de tu `DataLoader` y tu función de pérdida**:
+
+##### 1. Aprendizaje Supervisado (Clasificación / Regresión)
+El dataset entrega directamente la tupla `(X, y)` donde $y$ es una **etiqueta generada por un anotador humano**.
+
+```python
+# Dataset: [(foto_gato, 0), (foto_perro, 1), (foto_pajaro, 2)]
+for inputs, targets in dataloader:
+    logits = model(inputs)                          # Salida de la red [batch, num_classes]
+    loss = F.cross_entropy(logits, targets)         # Compara contra la etiqueta humana
+    loss.backward()
+    optimizer.step()
+```
+
+##### 2. Aprendizaje Autosupervisado (LLMs tipo GPT / Next-Token Prediction)
+No hay humanos etiquetando. **El propio dato se supervisa a sí mismo** desfasando la secuencia una posición hacia la derecha.
+
+```python
+# Texto crudo: "El gato bebe leche fresca" -> Tokens: [12, 45, 89, 34, 78]
+for sequence in dataloader:
+    inputs  = sequence[:, :-1]                      # "El gato bebe leche"
+    targets = sequence[:, 1:]                       # "gato bebe leche fresca" (+1 posición)
+    
+    logits = model(inputs)                          # [batch, seq_len, vocab_size]
+    loss = F.cross_entropy(
+        logits.view(-1, vocab_size), 
+        targets.view(-1)
+    )                                               # Se mide el acierto de la siguiente palabra
+    loss.backward()
+    optimizer.step()
+```
+
+##### 3. Aprendizaje No Supervisado / Contrastivo (SimCLR / InfoNCE)
+No existen etiquetas $y$. El dataset entrega datos crudos y el código genera **dos vistas aumentadas** de cada muestra. La pérdida fuerza a que ambas vistas tengan representaciones cercanas y se alejen del resto del lote.
+
+```python
+# Dataset: [imagen1, imagen2, imagen3] (sin etiquetas)
+for raw_images in dataloader:
+    view_A = transform_crop(raw_images)             # Vista A (recorte aleatorio)
+    view_B = transform_color(raw_images)            # Vista B (filtro de color)
+    
+    emb_A = model(view_A)                           # Vector latente A
+    emb_B = model(view_B)                           # Vector latente B
+    
+    # Pérdida matemática de distancia relativa (ej: InfoNCE / Contrastive)
+    loss = contrastive_loss(emb_A, emb_B)
+    loss.backward()
+    optimizer.step()
+```
+
+##### 4. Aprendizaje por Refuerzo (Policy Gradient / RLHF)
+No hay un dataset estático de entrenamiento; la red interactúa con un **entorno** y recibe una **recompensa escalar ($R$)**.
+
+```python
+# Interacción con un simulador / entorno
+state = env.reset()
+
+action_probs = model(state)                         # Probabilidades de cada acción [p_izq, p_der]
+action = torch.multinomial(action_probs, 1)         # Muestrear una acción según la probabilidad
+next_state, reward = env.step(action.item())        # El entorno devuelve una recompensa (+1 o -1)
+
+# Pérdida de política: fomenta la acción si R > 0, la desalienta si R < 0
+loss = -torch.log(action_probs[action]) * reward
+loss.backward()
+optimizer.step()
+```
+
+###### 🔑 La reinterpretación clave: el refuerzo **es** supervisado ponderado
+
+Mirando el bloque anterior, la tentación es concluir que RL es otro algoritmo distinto.
+No lo es. Compara la pérdida de política con la entropía cruzada de toda la vida:
+
+```python
+# Supervisado:   la etiqueta la pone un humano, y pesa siempre 1
+loss = -torch.log(probs[etiqueta_humana])
+
+# Refuerzo:      la "etiqueta" es lo que el propio modelo hizo, y pesa R
+loss = -torch.log(probs[accion_que_yo_elegi]) * recompensa
+```
+
+Son **la misma fórmula** con dos cambios:
+
+1. La diana ya no viene de un anotador: **es la propia salida del modelo** (`accion`).
+2. Cada muestra lleva un **peso escalar** ($R$) en lugar de contar todas por igual.
+
+De ahí la formulación en una frase que conviene memorizar:
+
+> **El gradiente de política es aprendizaje supervisado sobre tus propias muestras,
+> ponderado por lo bien que salieron.**
+
+Si la acción salió bien ($R > 0$), el signo empuja su probabilidad **hacia arriba**: "haz
+más de esto". Si salió mal ($R < 0$), el signo se invierte y la empuja **hacia abajo**:
+"haz menos de esto". Eso es el algoritmo **REINFORCE** completo, sin crítico, sin
+ventajas, sin GAE. Lo demás que verás en PPO o A2C son técnicas para **reducir la
+varianza** de este mismo estimador, no algoritmos distintos.
+
+###### ¿Y de dónde sale $R$ cuando no hay simulador?
+
+En un videojuego $R$ es gratis: la da el entorno. En texto no existe ninguna función
+matemática que puntúe una frase. La respuesta de RLHF: **se entrena un clasificador con
+juicios humanos y ese clasificador pasa a ser la función de recompensa.**
+
+```python
+# El reward model NO es un entorno: es un clasificador entrenado en la fase anterior
+reward_model = load_classifier("runs/fase2_finetune/weights.pt")
+reward_model.eval()                                  # Congelado: es un juez, no un alumno
+
+texto_generado = politica.generate(prompt)           # La política (el LM) actúa
+with torch.no_grad():
+    R = reward_model(texto_generado).softmax(-1)[1]  # P(positivo) → recompensa escalar
+```
+
+Esto encadena los paradigmas de forma muy concreta: **el modelo autosupervisado (§2) es la
+política, y el modelo supervisado (§1) es la recompensa.** Los cuatro paradigmas de esta
+sección no son cuatro cajones separados; en un pipeline moderno se acoplan unos a otros.
+
+###### Las tres cosas que rompen el `for inputs, targets in loader`
+
+Por eso este paradigma no encaja en el bucle canónico del arnés, y merece la pena ser
+preciso sobre **qué** exactamente se rompe:
+
+| Suposición del bucle estándar | Qué exige el refuerzo |
+|---|---|
+| Un lote es una tupla `(inputs, targets)` | Es una **terna** `(estado, acción, recompensa)` |
+| La pérdida es `f(pred, target)` de `torch.nn.functional` | Lleva un **peso escalar por muestra**: no existe en `F.*` |
+| El `DataLoader` se construye **una vez**, antes de entrenar | Los datos los genera la **política actual** → caducan en cada época |
+
+Las dos primeras son cosméticas (se resuelven con un `Dataset` de tres columnas y una
+pérdida propia). **La tercera es estructural**: obliga a regenerar los datos a mitad del
+entrenamiento, y eso ya no es un detalle de formato sino un cambio en la forma del bucle.
+Es la razón real por la que la industria usa herramientas separadas
+(`Stable-Baselines3`, `CleanRL`, `TorchRL`, `TRL`) en lugar de un `Trainer` supervisado.
 
 ---
 
@@ -269,6 +404,13 @@ components.optimizer.step()
   * Devuelve un diccionario estándar de Python que mapea el nombre de cada capa con su tensor de pesos actual.
 * **`torch.save(model.state_dict(), "weights.pt")`**:
   * Serializa y guarda los pesos entrenados en el fichero `weights.pt` dentro de la carpeta `runs/<run_id>/` para que puedan reutilizarse o inspeccionarse más tarde.
+* **`model.load_state_dict(torch.load("weights.pt"))`**:
+  * Restaura los pesos guardados en la estructura del modelo.
+
+#### 💡 ¿Por qué es la pieza clave del Entrenamiento Multi-Etapa?
+En proyectos reales (como entrenar un LLM o un modelo de visión), el aprendizaje se divide en fases separadas (**Preentrenamiento $\rightarrow$ Fine-Tuning $\rightarrow$ Refuerzo**):
+1. **No se usa un único bucle gigante con `if epoch < 10`:** Aunque matemáticamente haría lo mismo, si el script falla en la época final se perderían semanas de cómputo.
+2. **Desacoplamiento con Checkpoints:** Guardar el `state_dict()` permite que la Fase 1 (Preentrenamiento masivo) se guarde en `modelo_base.pt`, y luego cualquier investigador pueda lanzar 20 experimentos distintos de Fine-Tuning cargando esos pesos en 2 segundos, usando optimizadores e hiperparámetros diferentes sin re-entrenar la base.
 
 ---
 
